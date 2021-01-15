@@ -2,14 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>https://zgx43790.github.io/2020/09/21/tu-guan-xi-wang-luo-a-li-yun/</loc>
-    
-    <lastmod>2021-01-15</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://zgx43790.github.io/2020/09/02/deepmind-relation/</loc>
+    <loc>https://zgx43790.github.io/2021/01/15/gmn/</loc>
     
     <lastmod>2021-01-15</lastmod>
     
@@ -17,6 +10,20 @@
   
   <url>
     <loc>https://zgx43790.github.io/2020/09/21/qian-tan-dui-gcn-de-li-jie/</loc>
+    
+    <lastmod>2021-01-15</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://zgx43790.github.io/2019/12/05/pagerank/</loc>
+    
+    <lastmod>2021-01-15</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://zgx43790.github.io/2020/04/20/network-seir/</loc>
     
     <lastmod>2021-01-15</lastmod>
     
@@ -31,6 +38,41 @@
   
   <url>
     <loc>https://zgx43790.github.io/2020/07/22/graph-embedding-first/</loc>
+    
+    <lastmod>2021-01-15</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://zgx43790.github.io/2020/09/02/deepmind-relation/</loc>
+    
+    <lastmod>2021-01-15</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://zgx43790.github.io/2020/04/10/conplex-network-introduction/</loc>
+    
+    <lastmod>2021-01-15</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://zgx43790.github.io/2020/07/04/fan-xiang-chuan-bo/</loc>
+    
+    <lastmod>2021-01-15</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://zgx43790.github.io/2020/05/18/svd-de-yuan-li-tan-xi-ji-xiang-mu-shi-jian/</loc>
+    
+    <lastmod>2021-01-15</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://zgx43790.github.io/2020/09/21/tu-guan-xi-wang-luo-a-li-yun/</loc>
     
     <lastmod>2021-01-15</lastmod>
     
@@ -213,6 +255,55 @@
     <priority>0.6</priority>
   </url>
   
+  <url>
+    <loc>https://zgx43790.github.io/tags/%E5%A4%8D%E6%9D%82%E7%BD%91%E7%BB%9C/</loc>
+    <lastmod>2021-01-15</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://zgx43790.github.io/tags/%E8%AE%BA%E6%96%87%E5%AD%A6%E4%B9%A0/</loc>
+    <lastmod>2021-01-15</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://zgx43790.github.io/tags/%E5%9B%BE%E5%B5%8C%E5%85%A5/</loc>
+    <lastmod>2021-01-15</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://zgx43790.github.io/tags/COVID-19/</loc>
+    <lastmod>2021-01-15</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://zgx43790.github.io/tags/%E7%A4%BE%E4%BA%A4%E7%BD%91%E7%BB%9C/</loc>
+    <lastmod>2021-01-15</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://zgx43790.github.io/tags/%E5%9B%BE%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/</loc>
+    <lastmod>2021-01-15</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://zgx43790.github.io/tags/%E8%AE%BA%E6%96%87%E5%A4%8D%E7%8E%B0/</loc>
+    <lastmod>2021-01-15</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
 
   
   <url>
@@ -237,7 +328,14 @@
   </url>
   
   <url>
-    <loc>https://zgx43790.github.io/categories/%E5%9B%BE%E6%A8%A1%E5%9E%8B/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/</loc>
+    <loc>https://zgx43790.github.io/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/</loc>
+    <lastmod>2021-01-15</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://zgx43790.github.io/categories/%E5%A4%8D%E6%9D%82%E7%BD%91%E7%BB%9C-%E7%A4%BE%E4%BA%A4%E7%BD%91%E7%BB%9C/</loc>
     <lastmod>2021-01-15</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
