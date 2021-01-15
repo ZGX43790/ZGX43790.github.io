@@ -1,0 +1,1873 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="聚类模型及文本聚类分析, SUIBE DeepLearning 张国祥 guoxiang 上外贸 数据分析 深度学习 上海对外经贸大学">
+    <meta name="description" content="上海对外经贸大学 | 管理科学与工程 | 图网络、数据分析">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    <title>聚类模型及文本聚类分析 | Singularity&#39;s Blog</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+
+    <script src="/libs/jquery/jquery.min.js"></script>
+
+<meta name="generator" content="Hexo 5.1.0"><link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
+
+
+<body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">Singularity&#39;s Blog</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>首页</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/tags" class="waves-effect waves-light">
+      
+      <i class="fas fa-tags" style="zoom: 0.6;"></i>
+      
+      <span>标签</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/categories" class="waves-effect waves-light">
+      
+      <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
+      
+      <span>分类</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/archives" class="waves-effect waves-light">
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>归档</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>关于</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/contact" class="waves-effect waves-light">
+      
+      <i class="fas fa-comments" style="zoom: 0.6;"></i>
+      
+      <span>留言板</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="搜索" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">Singularity&#39;s Blog</div>
+        <div class="logo-desc">
+            
+            上海对外经贸大学 | 管理科学与工程 | 图网络、数据分析
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			首页
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/tags" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-tags"></i>
+			
+			标签
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/categories" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-bookmark"></i>
+			
+			分类
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/archives" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-archive"></i>
+			
+			归档
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle"></i>
+			
+			关于
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/contact" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-comments"></i>
+			
+			留言板
+		</a>
+          
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://github.com/blinkfox/hexo-theme-matery" class="waves-effect waves-light" target="_blank">
+                <i class="fab fa-github-square fa-fw"></i>Fork Me
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+            <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #0f9d58;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="https://github.com/blinkfox/hexo-theme-matery" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
+   data-tooltip="Fork Me" data-position="left" data-delay="50">
+    <svg viewBox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+              fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+              fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
+        
+    </nav>
+
+</header>
+
+    
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/17.jpg')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">聚类模型及文本聚类分析</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        width: 345px;
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        margin: 35px 0 15px 0;
+        padding-left: 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content {
+        height: calc(100vh - 250px);
+        overflow: auto;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+
+        position: absolute;
+        right: 23.5vw;
+        display: block;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 15px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">
+                                <span class="chip bg-color">机器学习</span>
+                            </a>
+                        
+                            <a href="/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">
+                                <span class="chip bg-color">学习笔记</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" class="post-category">
+                                机器学习
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2020-04-01
+                </div>
+                
+
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
+                    3.7k
+                </div>
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
+                    21 分
+                </div>
+                
+
+                
+                    <div id="busuanzi_container_page_pv" class="info-break-policy">
+                        <i class="far fa-eye fa-fw"></i>阅读次数:&nbsp;&nbsp;
+                        <span id="busuanzi_value_page_pv"></span>
+                    </div>
+				
+            </div>
+        </div>
+        <hr class="clearfix">
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <pre class=" language-python"><code class="language-python"><span class="token comment" spellcheck="true">##ex16_1 导入依赖包,更新停用词表</span>
+<span class="token keyword">import</span> os
+os<span class="token punctuation">.</span>chdir<span class="token punctuation">(</span>r<span class="token string">'C:\Users\43790\python projects\《数据挖掘》'</span><span class="token punctuation">)</span> <span class="token comment" spellcheck="true">##contractions.py放至此目录</span>
+<span class="token keyword">from</span> contractions <span class="token keyword">import</span> CONTRACTION_MAP   
+<span class="token keyword">import</span> re
+<span class="token keyword">import</span> nltk
+<span class="token keyword">import</span> string
+<span class="token keyword">from</span> nltk<span class="token punctuation">.</span>stem <span class="token keyword">import</span> WordNetLemmatizer
+
+<span class="token keyword">import</span> unicodedata
+
+stopword_list <span class="token operator">=</span> nltk<span class="token punctuation">.</span>corpus<span class="token punctuation">.</span>stopwords<span class="token punctuation">.</span>words<span class="token punctuation">(</span><span class="token string">'english'</span><span class="token punctuation">)</span>
+stopword_list <span class="token operator">=</span> stopword_list <span class="token operator">+</span> <span class="token punctuation">[</span><span class="token string">'mr'</span><span class="token punctuation">,</span> <span class="token string">'mrs'</span><span class="token punctuation">,</span> <span class="token string">'come'</span><span class="token punctuation">,</span> <span class="token string">'go'</span><span class="token punctuation">,</span> <span class="token string">'get'</span><span class="token punctuation">,</span>
+                                 <span class="token string">'tell'</span><span class="token punctuation">,</span> <span class="token string">'listen'</span><span class="token punctuation">,</span> <span class="token string">'one'</span><span class="token punctuation">,</span> <span class="token string">'two'</span><span class="token punctuation">,</span> <span class="token string">'three'</span><span class="token punctuation">,</span>
+                                 <span class="token string">'four'</span><span class="token punctuation">,</span> <span class="token string">'five'</span><span class="token punctuation">,</span> <span class="token string">'six'</span><span class="token punctuation">,</span> <span class="token string">'seven'</span><span class="token punctuation">,</span> <span class="token string">'eight'</span><span class="token punctuation">,</span>
+                                 <span class="token string">'nine'</span><span class="token punctuation">,</span> <span class="token string">'zero'</span><span class="token punctuation">,</span> <span class="token string">'join'</span><span class="token punctuation">,</span> <span class="token string">'find'</span><span class="token punctuation">,</span> <span class="token string">'make'</span><span class="token punctuation">,</span>
+                                 <span class="token string">'say'</span><span class="token punctuation">,</span> <span class="token string">'ask'</span><span class="token punctuation">,</span> <span class="token string">'tell'</span><span class="token punctuation">,</span> <span class="token string">'see'</span><span class="token punctuation">,</span> <span class="token string">'try'</span><span class="token punctuation">,</span> <span class="token string">'back'</span><span class="token punctuation">,</span>
+                                 <span class="token string">'also'</span><span class="token punctuation">]</span>
+wnl <span class="token operator">=</span> WordNetLemmatizer<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+
+<span class="token comment" spellcheck="true">## 定义分词函数</span>
+<span class="token keyword">def</span> <span class="token function">tokenize_text</span><span class="token punctuation">(</span>text<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    tokens <span class="token operator">=</span> nltk<span class="token punctuation">.</span>word_tokenize<span class="token punctuation">(</span>text<span class="token punctuation">)</span> 
+    tokens <span class="token operator">=</span> <span class="token punctuation">[</span>token<span class="token punctuation">.</span>strip<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">for</span> token <span class="token keyword">in</span> tokens<span class="token punctuation">]</span>
+    <span class="token keyword">return</span> tokens
+</code></pre>
+<pre class=" language-python"><code class="language-python"><span class="token comment" spellcheck="true">## ex16_2 扩展缩写词</span>
+<span class="token keyword">def</span> <span class="token function">expand_contractions</span><span class="token punctuation">(</span>text<span class="token punctuation">,</span> contraction_mapping<span class="token punctuation">)</span><span class="token punctuation">:</span>
+
+    contractions_pattern <span class="token operator">=</span> re<span class="token punctuation">.</span>compile<span class="token punctuation">(</span><span class="token string">'(&amp;#123;&amp;#125;)'</span><span class="token punctuation">.</span>format<span class="token punctuation">(</span><span class="token string">'|'</span><span class="token punctuation">.</span>join<span class="token punctuation">(</span>contraction_mapping<span class="token punctuation">.</span>keys<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">,</span> 
+                                      flags<span class="token operator">=</span>re<span class="token punctuation">.</span>IGNORECASE<span class="token operator">|</span>re<span class="token punctuation">.</span>DOTALL<span class="token punctuation">)</span>
+    <span class="token keyword">def</span> <span class="token function">expand_match</span><span class="token punctuation">(</span>contraction<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        match <span class="token operator">=</span> contraction<span class="token punctuation">.</span>group<span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span>
+        first_char <span class="token operator">=</span> match<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span>
+        expanded_contraction <span class="token operator">=</span> contraction_mapping<span class="token punctuation">.</span>get<span class="token punctuation">(</span>match<span class="token punctuation">)</span>\
+                                <span class="token keyword">if</span> contraction_mapping<span class="token punctuation">.</span>get<span class="token punctuation">(</span>match<span class="token punctuation">)</span>\
+                                <span class="token keyword">else</span> contraction_mapping<span class="token punctuation">.</span>get<span class="token punctuation">(</span>match<span class="token punctuation">.</span>lower<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>                       
+        expanded_contraction <span class="token operator">=</span> first_char<span class="token operator">+</span>expanded_contraction<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">:</span><span class="token punctuation">]</span>
+        <span class="token keyword">return</span> expanded_contraction
+
+    expanded_text <span class="token operator">=</span> contractions_pattern<span class="token punctuation">.</span>sub<span class="token punctuation">(</span>expand_match<span class="token punctuation">,</span> text<span class="token punctuation">)</span>
+    expanded_text <span class="token operator">=</span> re<span class="token punctuation">.</span>sub<span class="token punctuation">(</span><span class="token string">"'"</span><span class="token punctuation">,</span> <span class="token string">""</span><span class="token punctuation">,</span> expanded_text<span class="token punctuation">)</span>
+    <span class="token keyword">return</span> expanded_text
+</code></pre>
+<pre class=" language-python"><code class="language-python"><span class="token comment" spellcheck="true">## ex16_3 词形还原</span>
+<span class="token keyword">from</span> pattern<span class="token punctuation">.</span>en <span class="token keyword">import</span> tag
+<span class="token keyword">from</span> nltk<span class="token punctuation">.</span>corpus <span class="token keyword">import</span> wordnet <span class="token keyword">as</span> wn
+
+<span class="token comment" spellcheck="true"># Annotate text tokens with POS tags</span>
+<span class="token keyword">def</span> <span class="token function">pos_tag_text</span><span class="token punctuation">(</span>text<span class="token punctuation">)</span><span class="token punctuation">:</span>
+
+    <span class="token keyword">def</span> <span class="token function">penn_to_wn_tags</span><span class="token punctuation">(</span>pos_tag<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">if</span> pos_tag<span class="token punctuation">.</span>startswith<span class="token punctuation">(</span><span class="token string">'J'</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+            <span class="token keyword">return</span> wn<span class="token punctuation">.</span>ADJ
+        <span class="token keyword">elif</span> pos_tag<span class="token punctuation">.</span>startswith<span class="token punctuation">(</span><span class="token string">'V'</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+            <span class="token keyword">return</span> wn<span class="token punctuation">.</span>VERB
+        <span class="token keyword">elif</span> pos_tag<span class="token punctuation">.</span>startswith<span class="token punctuation">(</span><span class="token string">'N'</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+            <span class="token keyword">return</span> wn<span class="token punctuation">.</span>NOUN
+        <span class="token keyword">elif</span> pos_tag<span class="token punctuation">.</span>startswith<span class="token punctuation">(</span><span class="token string">'R'</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+            <span class="token keyword">return</span> wn<span class="token punctuation">.</span>ADV
+        <span class="token keyword">else</span><span class="token punctuation">:</span>
+            <span class="token keyword">return</span> None
+
+    tagged_text <span class="token operator">=</span> tag<span class="token punctuation">(</span>text<span class="token punctuation">)</span>
+    tagged_lower_text <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">(</span>word<span class="token punctuation">.</span>lower<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> penn_to_wn_tags<span class="token punctuation">(</span>pos_tag<span class="token punctuation">)</span><span class="token punctuation">)</span>
+                         <span class="token keyword">for</span> word<span class="token punctuation">,</span> pos_tag <span class="token keyword">in</span>
+                         tagged_text<span class="token punctuation">]</span>
+    <span class="token keyword">return</span> tagged_lower_text
+
+<span class="token comment" spellcheck="true"># lemmatize text based on POS tags    </span>
+<span class="token keyword">def</span> <span class="token function">lemmatize_text</span><span class="token punctuation">(</span>text<span class="token punctuation">)</span><span class="token punctuation">:</span>
+
+    pos_tagged_text <span class="token operator">=</span> pos_tag_text<span class="token punctuation">(</span>text<span class="token punctuation">)</span>
+    lemmatized_tokens <span class="token operator">=</span> <span class="token punctuation">[</span>wnl<span class="token punctuation">.</span>lemmatize<span class="token punctuation">(</span>word<span class="token punctuation">,</span> pos_tag<span class="token punctuation">)</span> <span class="token keyword">if</span> pos_tag
+                         <span class="token keyword">else</span> word                     
+                         <span class="token keyword">for</span> word<span class="token punctuation">,</span> pos_tag <span class="token keyword">in</span> pos_tagged_text<span class="token punctuation">]</span>
+    lemmatized_text <span class="token operator">=</span> <span class="token string">' '</span><span class="token punctuation">.</span>join<span class="token punctuation">(</span>lemmatized_tokens<span class="token punctuation">)</span>
+    <span class="token keyword">return</span> lemmatized_text
+</code></pre>
+<pre class=" language-python"><code class="language-python"><span class="token comment" spellcheck="true">## ex16_4去除特殊字符、停用词、提取文本标识</span>
+<span class="token keyword">def</span> <span class="token function">remove_special_characters</span><span class="token punctuation">(</span>text<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    tokens <span class="token operator">=</span> tokenize_text<span class="token punctuation">(</span>text<span class="token punctuation">)</span>
+    pattern <span class="token operator">=</span> re<span class="token punctuation">.</span>compile<span class="token punctuation">(</span><span class="token string">'[&amp;#123;&amp;#125;]'</span><span class="token punctuation">.</span>format<span class="token punctuation">(</span>re<span class="token punctuation">.</span>escape<span class="token punctuation">(</span>string<span class="token punctuation">.</span>punctuation<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+    filtered_tokens <span class="token operator">=</span> filter<span class="token punctuation">(</span>None<span class="token punctuation">,</span> <span class="token punctuation">[</span>pattern<span class="token punctuation">.</span>sub<span class="token punctuation">(</span><span class="token string">' '</span><span class="token punctuation">,</span> token<span class="token punctuation">)</span> <span class="token keyword">for</span> token <span class="token keyword">in</span> tokens<span class="token punctuation">]</span><span class="token punctuation">)</span>
+    filtered_text <span class="token operator">=</span> <span class="token string">' '</span><span class="token punctuation">.</span>join<span class="token punctuation">(</span>filtered_tokens<span class="token punctuation">)</span>
+    <span class="token keyword">return</span> filtered_text
+
+
+<span class="token keyword">def</span> <span class="token function">remove_stopwords</span><span class="token punctuation">(</span>text<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    tokens <span class="token operator">=</span> tokenize_text<span class="token punctuation">(</span>text<span class="token punctuation">)</span>
+    filtered_tokens <span class="token operator">=</span> <span class="token punctuation">[</span>token <span class="token keyword">for</span> token <span class="token keyword">in</span> tokens <span class="token keyword">if</span> token <span class="token operator">not</span> <span class="token keyword">in</span> stopword_list<span class="token punctuation">]</span>
+    filtered_text <span class="token operator">=</span> <span class="token string">' '</span><span class="token punctuation">.</span>join<span class="token punctuation">(</span>filtered_tokens<span class="token punctuation">)</span>    
+    <span class="token keyword">return</span> filtered_text
+
+<span class="token keyword">def</span> <span class="token function">keep_text_characters</span><span class="token punctuation">(</span>text<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    filtered_tokens <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
+    tokens <span class="token operator">=</span> tokenize_text<span class="token punctuation">(</span>text<span class="token punctuation">)</span>
+    <span class="token keyword">for</span> token <span class="token keyword">in</span> tokens<span class="token punctuation">:</span>
+        <span class="token keyword">if</span> re<span class="token punctuation">.</span>search<span class="token punctuation">(</span><span class="token string">'[a-zA-Z]'</span><span class="token punctuation">,</span> token<span class="token punctuation">)</span><span class="token punctuation">:</span>
+            filtered_tokens<span class="token punctuation">.</span>append<span class="token punctuation">(</span>token<span class="token punctuation">)</span>
+    filtered_text <span class="token operator">=</span> <span class="token string">' '</span><span class="token punctuation">.</span>join<span class="token punctuation">(</span>filtered_tokens<span class="token punctuation">)</span>
+    <span class="token keyword">return</span> filtered_text
+</code></pre>
+<pre class=" language-python"><code class="language-python"><span class="token comment" spellcheck="true">## ex16_5 将所有预处理步骤集成</span>
+<span class="token keyword">def</span> <span class="token function">normalize_corpus</span><span class="token punctuation">(</span>corpus<span class="token punctuation">,</span> lemmatize<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">,</span>
+                    only_text_chars<span class="token operator">=</span><span class="token boolean">False</span><span class="token punctuation">,</span>
+                    tokenize<span class="token operator">=</span><span class="token boolean">False</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    normalized_corpus <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
+    <span class="token keyword">for</span> text <span class="token keyword">in</span> corpus<span class="token punctuation">:</span>
+        text <span class="token operator">=</span> expand_contractions<span class="token punctuation">(</span>text<span class="token punctuation">,</span> CONTRACTION_MAP<span class="token punctuation">)</span> <span class="token comment" spellcheck="true">##扩展缩写词</span>
+        <span class="token keyword">if</span> lemmatize<span class="token punctuation">:</span>
+            text <span class="token operator">=</span> lemmatize_text<span class="token punctuation">(</span>text<span class="token punctuation">)</span> <span class="token comment" spellcheck="true">##词性还原</span>
+        <span class="token keyword">else</span><span class="token punctuation">:</span>
+            text <span class="token operator">=</span> text<span class="token punctuation">.</span>lower<span class="token punctuation">(</span><span class="token punctuation">)</span>
+            text <span class="token operator">=</span> remove_special_characters<span class="token punctuation">(</span>text<span class="token punctuation">)</span> <span class="token comment" spellcheck="true">##去除标点</span>
+            text <span class="token operator">=</span> remove_stopwords<span class="token punctuation">(</span>text<span class="token punctuation">)</span> <span class="token comment" spellcheck="true">##去除停用词</span>
+        <span class="token keyword">if</span> only_text_chars<span class="token punctuation">:</span>
+            text <span class="token operator">=</span> keep_text_characters<span class="token punctuation">(</span>text<span class="token punctuation">)</span> <span class="token comment" spellcheck="true">##仅保留英文字符</span>
+        <span class="token keyword">if</span> tokenize<span class="token punctuation">:</span>
+            text <span class="token operator">=</span> tokenize_text<span class="token punctuation">(</span>text<span class="token punctuation">)</span> <span class="token comment" spellcheck="true">##分词</span>
+            normalized_corpus<span class="token punctuation">.</span>append<span class="token punctuation">(</span>text<span class="token punctuation">)</span>
+        <span class="token keyword">else</span><span class="token punctuation">:</span>
+            normalized_corpus<span class="token punctuation">.</span>append<span class="token punctuation">(</span>text<span class="token punctuation">)</span>
+    <span class="token keyword">return</span> normalized_corpus</code></pre>
+<pre class=" language-python"><code class="language-python"><span class="token keyword">import</span> numpy <span class="token keyword">as</span> np
+
+
+<span class="token comment" spellcheck="true">## 包含9个文档的原始语料库</span>
+toy_corpus <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">'The sky is blue'</span><span class="token punctuation">,</span>
+<span class="token string">'The sky is blue and beautiful'</span><span class="token punctuation">,</span>
+<span class="token string">'Look at the bright blue sky!'</span><span class="token punctuation">,</span>
+<span class="token string">'Python is a great Programming language'</span><span class="token punctuation">,</span>
+<span class="token string">'Python and Java are popular Programming languages'</span><span class="token punctuation">,</span>
+<span class="token string">'Among Programming languages, both Python and Java are the most used in Analytics'</span><span class="token punctuation">,</span>
+<span class="token string">'The fox is quicker than the lazy dog'</span><span class="token punctuation">,</span>
+<span class="token string">'The dog is smarter than the fox'</span><span class="token punctuation">,</span>
+<span class="token string">'The dog, fox and cat are good friends'</span><span class="token punctuation">]</span>
+
+<span class="token comment" spellcheck="true">## 包含3个文档的查询语料，对每个文档，从toy_corpus中找到最相似的一个</span>
+query_docs <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">'The fox is definitely smarter than the dog'</span><span class="token punctuation">,</span>
+            <span class="token string">'Java is a static typed programming language unlike Python'</span><span class="token punctuation">,</span>
+            <span class="token string">'I love to relax under the beautiful blue sky!'</span><span class="token punctuation">]</span>  
+
+<span class="token comment" spellcheck="true">## 规范化原始语料库</span>
+norm_corpus <span class="token operator">=</span> normalize_corpus<span class="token punctuation">(</span>toy_corpus<span class="token punctuation">,</span> lemmatize<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">)</span>  <span class="token comment" spellcheck="true">##需运行ex16_1~ ex16_5</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>norm_corpus<span class="token punctuation">)</span>
+
+<span class="token comment" spellcheck="true">## 规范化查询语料</span>
+norm_query_docs <span class="token operator">=</span> normalize_corpus<span class="token punctuation">(</span>query_docs<span class="token punctuation">,</span>lemmatize<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>norm_query_docs<span class="token punctuation">)</span>
+</code></pre>
+<pre><code>['the sky be blue', 'the sky be blue and beautiful', 'look at the bright blue sky !', 'python be a great programming language', 'python and java be popular programming language', 'among programming language , both python and java be the most use in analytics', 'the fox be quick than the lazy dog', 'the dog be smarter than the fox', 'the dog , fox and cat be good friend']
+['the fox be definitely smarter than the dog', 'java be a static type programming language unlike python', 'i love to relax under the beautiful blue sky !']</code></pre>
+<pre class=" language-python"><code class="language-python"><span class="token comment" spellcheck="true">## ex16_7 定义文档向量提取函数</span>
+<span class="token keyword">from</span> sklearn<span class="token punctuation">.</span>feature_extraction<span class="token punctuation">.</span>text <span class="token keyword">import</span> CountVectorizer<span class="token punctuation">,</span> TfidfVectorizer
+
+<span class="token comment" spellcheck="true">## 定义如下函数，从文档中提取特征，可提取布尔特征、频率特征、tfidf特征</span>
+<span class="token keyword">def</span> <span class="token function">build_feature_matrix</span><span class="token punctuation">(</span>documents<span class="token punctuation">,</span> feature_type<span class="token operator">=</span><span class="token string">'frequency'</span><span class="token punctuation">,</span>
+                         ngram_range<span class="token operator">=</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">,</span> min_df<span class="token operator">=</span><span class="token number">0.0</span><span class="token punctuation">,</span> max_df<span class="token operator">=</span><span class="token number">1.0</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+
+    feature_type <span class="token operator">=</span> feature_type<span class="token punctuation">.</span>lower<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>strip<span class="token punctuation">(</span><span class="token punctuation">)</span>  
+
+    <span class="token keyword">if</span> feature_type <span class="token operator">==</span> <span class="token string">'binary'</span><span class="token punctuation">:</span>
+        vectorizer <span class="token operator">=</span> CountVectorizer<span class="token punctuation">(</span>binary<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">,</span> min_df<span class="token operator">=</span>min_df<span class="token punctuation">,</span>
+                                     max_df<span class="token operator">=</span>max_df<span class="token punctuation">,</span> ngram_range<span class="token operator">=</span>ngram_range<span class="token punctuation">)</span>
+    <span class="token keyword">elif</span> feature_type <span class="token operator">==</span> <span class="token string">'frequency'</span><span class="token punctuation">:</span>
+        vectorizer <span class="token operator">=</span> CountVectorizer<span class="token punctuation">(</span>binary<span class="token operator">=</span><span class="token boolean">False</span><span class="token punctuation">,</span> min_df<span class="token operator">=</span>min_df<span class="token punctuation">,</span>
+                                     max_df<span class="token operator">=</span>max_df<span class="token punctuation">,</span> ngram_range<span class="token operator">=</span>ngram_range<span class="token punctuation">)</span>
+    <span class="token keyword">elif</span> feature_type <span class="token operator">==</span> <span class="token string">'tfidf'</span><span class="token punctuation">:</span>
+        vectorizer <span class="token operator">=</span> TfidfVectorizer<span class="token punctuation">(</span>min_df<span class="token operator">=</span>min_df<span class="token punctuation">,</span> max_df<span class="token operator">=</span>max_df<span class="token punctuation">,</span> 
+                                     ngram_range<span class="token operator">=</span>ngram_range<span class="token punctuation">)</span>
+    <span class="token keyword">else</span><span class="token punctuation">:</span>
+        <span class="token keyword">raise</span> Exception<span class="token punctuation">(</span><span class="token string">"Wrong feature type entered. Possible values: 'binary', 'frequency', 'tfidf'"</span><span class="token punctuation">)</span>
+
+    feature_matrix <span class="token operator">=</span> vectorizer<span class="token punctuation">.</span>fit_transform<span class="token punctuation">(</span>documents<span class="token punctuation">)</span><span class="token punctuation">.</span>astype<span class="token punctuation">(</span>float<span class="token punctuation">)</span>
+
+    <span class="token keyword">return</span> vectorizer<span class="token punctuation">,</span> feature_matrix
+</code></pre>
+<pre class=" language-python"><code class="language-python"><span class="token comment" spellcheck="true">## ex16_8 将原始语料转换为特征向量，即提取原始语料的tfidf特征</span>
+tfidf_vectorizer<span class="token punctuation">,</span> tfidf_features <span class="token operator">=</span> build_feature_matrix<span class="token punctuation">(</span>norm_corpus<span class="token punctuation">,</span> feature_type<span class="token operator">=</span><span class="token string">'tfidf'</span><span class="token punctuation">,</span>\
+                                                       ngram_range<span class="token operator">=</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">,</span>min_df<span class="token operator">=</span><span class="token number">0.0</span><span class="token punctuation">,</span> max_df<span class="token operator">=</span><span class="token number">1.0</span><span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'norm_corpus tfidf feaures:'</span><span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>tfidf_features<span class="token punctuation">.</span>toarray<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>  <span class="token comment" spellcheck="true">## 压缩矩阵转化为稀疏矩阵</span>
+<span class="token comment" spellcheck="true">## 将查询语料转换为特征向量，即提取查询语料的tfidf特征</span>
+query_docs_tfidf <span class="token operator">=</span> tfidf_vectorizer<span class="token punctuation">.</span>transform<span class="token punctuation">(</span>norm_query_docs<span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'norm_query_docs tfidf features:'</span><span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>query_docs_tfidf<span class="token punctuation">.</span>toarray<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+</code></pre>
+<pre><code>norm_corpus tfidf feaures:
+[[0.         0.         0.         0.         0.34846291 0.
+  0.6041072  0.         0.         0.         0.         0.
+  0.         0.         0.         0.         0.         0.
+  0.         0.         0.         0.         0.         0.
+  0.         0.6041072  0.         0.         0.3855938  0.        ]
+ [0.         0.         0.38110217 0.         0.24880016 0.58734555
+  0.43132846 0.         0.         0.         0.         0.
+  0.         0.         0.         0.         0.         0.
+  0.         0.         0.         0.         0.         0.
+  0.         0.43132846 0.         0.         0.27531137 0.        ]
+ [0.         0.         0.         0.48233752 0.         0.
+  0.3542138  0.         0.48233752 0.         0.         0.
+  0.         0.         0.         0.         0.         0.
+  0.         0.48233752 0.         0.         0.         0.
+  0.         0.3542138  0.         0.         0.22609008 0.        ]
+ [0.         0.         0.         0.         0.25327071 0.
+  0.         0.         0.         0.         0.         0.
+  0.         0.         0.59789923 0.         0.         0.43907875
+  0.         0.         0.         0.         0.43907875 0.43907875
+  0.         0.         0.         0.         0.         0.        ]
+ [0.         0.         0.32723247 0.         0.21363167 0.
+  0.         0.         0.         0.         0.         0.
+  0.         0.         0.         0.         0.42595911 0.37035915
+  0.         0.         0.         0.50432286 0.37035915 0.37035915
+  0.         0.         0.         0.         0.         0.        ]
+ [0.33056385 0.33056385 0.21448805 0.         0.14002718 0.
+  0.         0.33056385 0.         0.         0.         0.
+  0.         0.         0.         0.33056385 0.27919949 0.2427559
+  0.         0.         0.33056385 0.         0.2427559  0.2427559
+  0.         0.         0.         0.         0.15494795 0.33056385]
+ [0.         0.         0.         0.         0.1923419  0.
+  0.         0.         0.         0.         0.33345049 0.33345049
+  0.         0.         0.         0.         0.         0.
+  0.45406386 0.         0.         0.         0.         0.
+  0.45406386 0.         0.         0.38350956 0.42567426 0.        ]
+ [0.         0.         0.         0.         0.21587942 0.
+  0.         0.         0.         0.         0.37425594 0.37425594
+  0.         0.         0.         0.         0.         0.
+  0.         0.         0.         0.         0.         0.
+  0.         0.         0.50962916 0.4304409  0.47776543 0.        ]
+ [0.         0.         0.29315989 0.         0.1913876  0.
+  0.         0.         0.         0.45181101 0.33179607 0.33179607
+  0.45181101 0.45181101 0.         0.         0.         0.
+  0.         0.         0.         0.         0.         0.
+  0.         0.         0.         0.         0.21178113 0.        ]]
+norm_query_docs tfidf features:
+[[0.         0.         0.         0.         0.21587942 0.
+  0.         0.         0.         0.         0.37425594 0.37425594
+  0.         0.         0.         0.         0.         0.
+  0.         0.         0.         0.         0.         0.
+  0.         0.         0.50962916 0.4304409  0.47776543 0.        ]
+ [0.         0.         0.         0.         0.26733688 0.
+  0.         0.         0.         0.         0.         0.
+  0.         0.         0.         0.         0.53304166 0.46346434
+  0.         0.         0.         0.         0.46346434 0.46346434
+  0.         0.         0.         0.         0.         0.        ]
+ [0.         0.         0.         0.         0.         0.65962261
+  0.4844065  0.         0.         0.         0.         0.
+  0.         0.         0.         0.         0.         0.
+  0.         0.         0.         0.         0.         0.
+  0.         0.4844065  0.         0.         0.30919039 0.        ]]</code></pre>
+<pre class=" language-python"><code class="language-python"><span class="token comment" spellcheck="true">## ex16_9 利用余弦相似度，返回与查询文档相似度最高的n个文档</span>
+<span class="token keyword">from</span> sklearn<span class="token punctuation">.</span>metrics<span class="token punctuation">.</span>pairwise <span class="token keyword">import</span> cosine_similarity
+
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'Document Similarity Analysis using Cosine Similarity'</span><span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'='</span><span class="token operator">*</span><span class="token number">60</span><span class="token punctuation">)</span>
+
+<span class="token keyword">for</span> index<span class="token punctuation">,</span> doc <span class="token keyword">in</span> enumerate<span class="token punctuation">(</span>query_docs<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    doc_tfidf <span class="token operator">=</span> query_docs_tfidf<span class="token punctuation">[</span>index<span class="token punctuation">]</span>
+    similarity <span class="token operator">=</span>  cosine_similarity<span class="token punctuation">(</span>doc_tfidf<span class="token punctuation">,</span> tfidf_features<span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span>similarity<span class="token punctuation">)</span>
+    top_docs <span class="token operator">=</span> similarity<span class="token punctuation">.</span>argsort<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token punctuation">:</span><span class="token number">2</span><span class="token punctuation">]</span>
+<span class="token comment" spellcheck="true">#     print(top_docs)</span>
+    top_docs_with_score <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">(</span>index<span class="token punctuation">,</span> round<span class="token punctuation">(</span>similarity<span class="token punctuation">[</span>index<span class="token punctuation">]</span><span class="token punctuation">,</span><span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token keyword">for</span> index <span class="token keyword">in</span> top_docs<span class="token punctuation">]</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'Document'</span><span class="token punctuation">,</span>index<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token string">':'</span><span class="token punctuation">,</span> doc<span class="token punctuation">)</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'Top'</span><span class="token punctuation">,</span> len<span class="token punctuation">(</span>top_docs<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token string">'similar docs:'</span><span class="token punctuation">)</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'-'</span><span class="token operator">*</span><span class="token number">40</span><span class="token punctuation">)</span>
+    <span class="token keyword">for</span> doc_index<span class="token punctuation">,</span> sim_score <span class="token keyword">in</span> top_docs_with_score<span class="token punctuation">:</span>
+        <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'Doc num:&amp;#123;&amp;#125; Similarity Score:&amp;#123;&amp;#125;\nDoc:&amp;#123;&amp;#125;'</span><span class="token punctuation">.</span>format<span class="token punctuation">(</span>doc_index<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">,</span> sim_score<span class="token punctuation">,</span> toy_corpus<span class="token punctuation">[</span>doc_index<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+        <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'-'</span><span class="token operator">*</span><span class="token number">40</span><span class="token punctuation">)</span>
+        <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+</code></pre>
+<pre><code>Document Similarity Analysis using Cosine Similarity
+============================================================
+
+
+
+---------------------------------------------------------------------------
+
+NameError                                 Traceback (most recent call last)
+
+&lt;ipython-input-1-9b1754fc3fc1&gt; in &lt;module&gt;
+      5 print('='*60)
+      6 
+----&gt; 7 for index, doc in enumerate(query_docs):
+      8     doc_tfidf = query_docs_tfidf[index]
+      9     similarity =  cosine_similarity(doc_tfidf, tfidf_features)[0]
+
+
+NameError: name 'query_docs' is not defined</code></pre>
+<pre class=" language-python"><code class="language-python"><span class="token comment" spellcheck="true">## ex16_10 基于HB距离，从语料库中获取n个与查询文档最相似的文档</span>
+<span class="token keyword">def</span> <span class="token function">compute_HB_distance</span><span class="token punctuation">(</span>doc_features<span class="token punctuation">,</span> corpus_features<span class="token punctuation">,</span> top_n<span class="token operator">=</span><span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token comment" spellcheck="true"># get document vectors</span>
+    doc_features <span class="token operator">=</span> doc_features<span class="token punctuation">.</span>toarray<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span>
+    corpus_features <span class="token operator">=</span> corpus_features<span class="token punctuation">.</span>toarray<span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token comment" spellcheck="true"># compute hb distances</span>
+    distance <span class="token operator">=</span> np<span class="token punctuation">.</span>sqrt<span class="token punctuation">(</span><span class="token number">0.5</span> <span class="token operator">*</span> np<span class="token punctuation">.</span>sum<span class="token punctuation">(</span>np<span class="token punctuation">.</span>square<span class="token punctuation">(</span>np<span class="token punctuation">.</span>sqrt<span class="token punctuation">(</span>doc_features<span class="token punctuation">)</span> <span class="token operator">-</span>
+    np<span class="token punctuation">.</span>sqrt<span class="token punctuation">(</span>corpus_features<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">,</span> axis<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+    <span class="token comment" spellcheck="true"># get docs with lowest distance scores</span>
+    top_docs <span class="token operator">=</span> distance<span class="token punctuation">.</span>argsort<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token punctuation">:</span>top_n<span class="token punctuation">]</span> <span class="token comment" spellcheck="true">##分布之间的距离度量，距离从小到大排序，得分为0表示完全相似</span>
+    top_docs_with_score <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">(</span>index<span class="token punctuation">,</span> round<span class="token punctuation">(</span>distance<span class="token punctuation">[</span>index<span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+                            <span class="token keyword">for</span> index <span class="token keyword">in</span> top_docs<span class="token punctuation">]</span>
+    <span class="token keyword">return</span> top_docs_with_score
+<span class="token comment" spellcheck="true">## 距离计算</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'Document Similarity Analysis using Hellinger-Bhattacharya distance'</span><span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'='</span><span class="token operator">*</span><span class="token number">60</span><span class="token punctuation">)</span>
+<span class="token keyword">for</span> index<span class="token punctuation">,</span> doc <span class="token keyword">in</span> enumerate<span class="token punctuation">(</span>query_docs<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    doc_tfidf <span class="token operator">=</span> query_docs_tfidf<span class="token punctuation">[</span>index<span class="token punctuation">]</span>
+    top_similar_docs <span class="token operator">=</span> compute_HB_distance<span class="token punctuation">(</span>doc_tfidf<span class="token punctuation">,</span> tfidf_features<span class="token punctuation">,</span>top_n<span class="token operator">=</span><span class="token number">2</span><span class="token punctuation">)</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'Document'</span><span class="token punctuation">,</span>index<span class="token operator">+</span><span class="token number">1</span> <span class="token punctuation">,</span><span class="token string">':'</span><span class="token punctuation">,</span> doc<span class="token punctuation">)</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'Top'</span><span class="token punctuation">,</span> len<span class="token punctuation">(</span>top_similar_docs<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token string">'similar docs:'</span><span class="token punctuation">)</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'-'</span><span class="token operator">*</span><span class="token number">40</span><span class="token punctuation">)</span>
+    <span class="token keyword">for</span> doc_index<span class="token punctuation">,</span> sim_score <span class="token keyword">in</span> top_similar_docs<span class="token punctuation">:</span>
+        <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'Doc num: &amp;#123;&amp;#125; Distance Score: &amp;#123;&amp;#125;\nDoc: &amp;#123;&amp;#125;'</span><span class="token punctuation">.</span>format<span class="token punctuation">(</span>doc_index<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">,</span>
+                                                        sim_score<span class="token punctuation">,</span>
+                                                        toy_corpus<span class="token punctuation">[</span>doc_index<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+        <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'-'</span><span class="token operator">*</span><span class="token number">40</span><span class="token punctuation">)</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token punctuation">)</span></code></pre>
+<pre><code>Document Similarity Analysis using Hellinger-Bhattacharya distance
+============================================================
+Document 1 : The fox is definitely smarter than the dog
+Top 2 similar docs:
+----------------------------------------
+Doc num: 8 Distance Score: 0.0
+Doc: The dog is smarter than the fox
+----------------------------------------
+Doc num: 7 Distance Score: 0.844
+Doc: The fox is quicker than the lazy dog
+----------------------------------------
+
+Document 2 : Java is a static typed programming language unlike Python
+Top 2 similar docs:
+----------------------------------------
+Doc num: 5 Distance Score: 0.654
+Doc: Python and Java are popular Programming languages
+----------------------------------------
+Doc num: 4 Distance Score: 0.752
+Doc: Python is a great Programming language
+----------------------------------------
+
+Document 3 : I love to relax under the beautiful blue sky!
+Top 2 similar docs:
+----------------------------------------
+Doc num: 2 Distance Score: 0.564
+Doc: The sky is blue and beautiful
+----------------------------------------
+Doc num: 1 Distance Score: 0.716
+Doc: The sky is blue
+----------------------------------------</code></pre>
+<pre class=" language-python"><code class="language-python"><span class="token keyword">import</span> os
+
+<span class="token keyword">import</span> pandas <span class="token keyword">as</span> pd
+<span class="token keyword">import</span> numpy <span class="token keyword">as</span> np
+
+os<span class="token punctuation">.</span>chdir<span class="token punctuation">(</span>r<span class="token string">'C:/Users/43790/data file'</span><span class="token punctuation">)</span>
+movie_data <span class="token operator">=</span> pd<span class="token punctuation">.</span>read_csv<span class="token punctuation">(</span><span class="token string">'movie_data.csv'</span><span class="token punctuation">)</span>
+<span class="token comment" spellcheck="true"># print(movie_data.head())</span>
+
+movie_titles <span class="token operator">=</span> movie_data<span class="token punctuation">[</span><span class="token string">'Title'</span><span class="token punctuation">]</span>
+movie_synopses <span class="token operator">=</span> movie_data<span class="token punctuation">[</span><span class="token string">'Synopsis'</span><span class="token punctuation">]</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'Movie'</span><span class="token punctuation">,</span>movie_titles<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'Movie Synopsis'</span><span class="token punctuation">,</span> movie_synopses<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token punctuation">:</span><span class="token number">1000</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+</code></pre>
+<pre><code>Movie The Godfather
+Movie Synopsis In late summer 1945, guests are gathered for the wedding reception of Don Vito Corleone's daughter Connie (Talia Shire) and Carlo Rizzi (Gianni Russo). Vito (Marlon Brando), the head of the Corleone Mafia family, is known to friends and associates as "Godfather." He and Tom Hagen (Robert Duvall), the Corleone family lawyer, are hearing requests for favors because, according to Italian tradition, "no Sicilian can refuse a request on his daughter's wedding day." One of the men who asks the Don for a favor is Amerigo Bonasera, a successful mortician and acquaintance of the Don, whose daughter was brutally beaten by two young men because she refused their advances; the men received minimal punishment. The Don is disappointed in Bonasera, who'd avoided most contact with the Don due to Corleone's nefarious business dealings. The Don's wife is godmother to Bonasera's shamed daughter, a relationship the Don uses to extract new loyalty from the undertaker. The Don agrees to have his men punish </code></pre>
+<pre class=" language-python"><code class="language-python"><span class="token comment" spellcheck="true">##文本规范化</span>
+norm_movie_synopses <span class="token operator">=</span> normalize_corpus<span class="token punctuation">(</span>movie_synopses<span class="token punctuation">,</span> lemmatize<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">,</span> only_text_chars<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">)</span>
+
+<span class="token comment" spellcheck="true"># ## 提取tf-idf的一元分词和二元分词特征</span>
+<span class="token comment" spellcheck="true">## 每个特征至少在25%的文档中出现，至多在85%的文档中出现</span>
+vectorizer<span class="token punctuation">,</span> feature_matrix <span class="token operator">=</span> build_feature_matrix<span class="token punctuation">(</span>norm_movie_synopses<span class="token punctuation">,</span> feature_type<span class="token operator">=</span><span class="token string">'tfidf'</span><span class="token punctuation">,</span> min_df<span class="token operator">=</span><span class="token number">0.24</span><span class="token punctuation">,</span>max_df<span class="token operator">=</span><span class="token number">0.85</span><span class="token punctuation">,</span> ngram_range<span class="token operator">=</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+
+
+<span class="token keyword">print</span><span class="token punctuation">(</span>feature_matrix<span class="token punctuation">)</span> <span class="token comment" spellcheck="true">## csr_matrix</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>feature_matrix<span class="token punctuation">.</span>shape<span class="token punctuation">)</span>  <span class="token comment" spellcheck="true">## 原始矩阵，100*307 提取了307个特征</span>
+
+<span class="token comment" spellcheck="true"># get feature name</span>
+feature_names <span class="token operator">=</span> vectorizer<span class="token punctuation">.</span>get_feature_names<span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>feature_names<span class="token punctuation">[</span><span class="token punctuation">:</span><span class="token number">20</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>len<span class="token punctuation">(</span>feature_names<span class="token punctuation">)</span><span class="token punctuation">)</span>
+</code></pre>
+<pre><code>  (0, 245)    0.019212339105980844
+  (0, 244)    0.014058482888994648
+  (0, 255)    0.016463737903316754
+  (0, 225)    0.01490542083529085
+  (0, 573)    0.01951226744996299
+  (0, 240)    0.018642322542943058
+  (0, 484)    0.018922579806325012
+  (0, 237)    0.0176050414984765
+  (0, 352)    0.017852800316818917
+  (0, 551)    0.015649114100419182
+  (0, 254)    0.01490542083529085
+  (0, 421)    0.020145674272034193
+  (0, 78)    0.020145674272034193
+  (0, 514)    0.016046724430450594
+  (0, 20)    0.06043702281610258
+  (0, 61)    0.01690214583228003
+  (0, 72)    0.01951226744996299
+  (0, 589)    0.01545703678681262
+  (0, 26)    0.018642322542943058
+  (0, 503)    0.012717937620422403
+  (0, 481)    0.0166801312525218
+  (0, 77)    0.037845159612650024
+  (0, 499)    0.01951226744996299
+  (0, 230)    0.020145674272034193
+  (0, 469)    0.01810795600342744
+  :    :
+  (99, 63)    0.051305686365200345
+  (99, 160)    0.21182600776815871
+  (99, 319)    0.0567693710391131
+  (99, 580)    0.055621265504843094
+  (99, 124)    0.05977730538786259
+  (99, 22)    0.06648706707638062
+  (99, 351)    0.06436507985396142
+  (99, 516)    0.05505820594286933
+  (99, 182)    0.2458274974654437
+  (99, 423)    0.0799330814115007
+  (99, 498)    0.052345724418053845
+  (99, 283)    0.4036156953269401
+  (99, 302)    0.05977730538786259
+  (99, 178)    0.0819424991551479
+  (99, 564)    0.08513904186902038
+  (99, 600)    0.09500189264390897
+  (99, 412)    0.05505820594286933
+  (99, 406)    0.09232230995044544
+  (99, 606)    0.0761691422296135
+  (99, 57)    0.062340317698467464
+  (99, 137)    0.11955461077572518
+  (99, 111)    0.05450222907907284
+  (99, 345)    0.058549460380619964
+  (99, 290)    0.12208047277703582
+  (99, 176)    0.0799330814115007
+(100, 607)
+['able', 'able to', 'about', 'about his', 'about the', 'about to', 'accept', 'across', 'act', 'after the', 'again', 'against', 'agree', 'agree to', 'alive', 'all', 'all the', 'allow', 'alone', 'along']
+607</code></pre>
+<pre class=" language-python"><code class="language-python"><span class="token comment" spellcheck="true">## ex16_13 使用k-means算法聚类电影评论</span>
+
+<span class="token keyword">from</span> sklearn<span class="token punctuation">.</span>cluster <span class="token keyword">import</span> KMeans
+
+<span class="token keyword">def</span> <span class="token function">k_means</span><span class="token punctuation">(</span>feature_matrix<span class="token punctuation">,</span> num_clusters<span class="token operator">=</span><span class="token number">5</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    km <span class="token operator">=</span> KMeans<span class="token punctuation">(</span>n_clusters<span class="token operator">=</span>num_clusters<span class="token punctuation">,</span> max_iter<span class="token operator">=</span><span class="token number">1000</span><span class="token punctuation">)</span>
+    km<span class="token punctuation">.</span>fit<span class="token punctuation">(</span>feature_matrix<span class="token punctuation">)</span>
+    clusters <span class="token operator">=</span> km<span class="token punctuation">.</span>labels_
+    <span class="token keyword">return</span> km<span class="token punctuation">,</span> clusters <span class="token comment" spellcheck="true">##clusters中得到为每个样本点分配的聚类标签</span>
+
+<span class="token comment" spellcheck="true">##将100部电影简介聚类成5类</span>
+num_clusters <span class="token operator">=</span> <span class="token number">5</span>
+
+km_obj<span class="token punctuation">,</span> clusters <span class="token operator">=</span> k_means<span class="token punctuation">(</span>feature_matrix<span class="token operator">=</span>feature_matrix<span class="token punctuation">,</span> num_clusters<span class="token operator">=</span>num_clusters<span class="token punctuation">)</span> <span class="token comment" spellcheck="true">## 得到聚类对象和聚类标签</span>
+movie_data<span class="token punctuation">[</span><span class="token string">'Cluster'</span><span class="token punctuation">]</span><span class="token operator">=</span>clusters
+
+<span class="token keyword">from</span> collections <span class="token keyword">import</span> Counter
+c <span class="token operator">=</span> Counter<span class="token punctuation">(</span>clusters<span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>c<span class="token punctuation">.</span>items<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>  <span class="token comment" spellcheck="true">##聚类类别统计</span>
+</code></pre>
+<pre><code>dict_items([(1, 24), (3, 33), (4, 12), (0, 27), (2, 4)])</code></pre>
+<pre class=" language-python"><code class="language-python"><span class="token comment" spellcheck="true">## ex16_14 从聚类模型中提取详细的聚类分析信息</span>
+<span class="token keyword">def</span> <span class="token function">get_cluster_data</span><span class="token punctuation">(</span>clustering_obj<span class="token punctuation">,</span> movie_data<span class="token punctuation">,</span> feature_names<span class="token punctuation">,</span> num_clusters<span class="token punctuation">,</span> topn_features<span class="token operator">=</span><span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    cluster_details <span class="token operator">=</span> <span class="token operator">&amp;</span><span class="token comment" spellcheck="true">#123;&amp;#125;</span>
+    <span class="token comment" spellcheck="true">##获取质心，得到按降序排序的分量索引</span>
+    ordered_centroids <span class="token operator">=</span> clustering_obj<span class="token punctuation">.</span>cluster_centers_<span class="token punctuation">.</span>argsort<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token punctuation">:</span><span class="token punctuation">,</span><span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">]</span>  <span class="token comment" spellcheck="true">##5行307列</span>
+    <span class="token comment" spellcheck="true">## 获取每一个类的关键特征</span>
+    <span class="token keyword">for</span> cluster_num <span class="token keyword">in</span> range<span class="token punctuation">(</span>num_clusters<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        cluster_details<span class="token punctuation">[</span>cluster_num<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token operator">&amp;</span><span class="token comment" spellcheck="true">#123;&amp;#125;</span>
+        cluster_details<span class="token punctuation">[</span>cluster_num<span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token string">'cluster_num'</span><span class="token punctuation">]</span> <span class="token operator">=</span> cluster_num
+        key_features <span class="token operator">=</span> <span class="token punctuation">[</span>feature_names<span class="token punctuation">[</span>index<span class="token punctuation">]</span> <span class="token keyword">for</span> index <span class="token keyword">in</span> ordered_centroids<span class="token punctuation">[</span>cluster_num<span class="token punctuation">,</span><span class="token punctuation">:</span>topn_features<span class="token punctuation">]</span><span class="token punctuation">]</span>
+        cluster_details<span class="token punctuation">[</span>cluster_num<span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token string">'key_features'</span><span class="token punctuation">]</span> <span class="token operator">=</span> key_features
+        <span class="token comment" spellcheck="true">## 获取每个聚类的电影标题</span>
+        movies <span class="token operator">=</span> movie_data<span class="token punctuation">[</span>movie_data<span class="token punctuation">[</span><span class="token string">'Cluster'</span><span class="token punctuation">]</span><span class="token operator">==</span>cluster_num<span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token string">'Title'</span><span class="token punctuation">]</span><span class="token punctuation">.</span>values<span class="token punctuation">.</span>tolist<span class="token punctuation">(</span><span class="token punctuation">)</span>
+        cluster_details<span class="token punctuation">[</span>cluster_num<span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token string">'movies'</span><span class="token punctuation">]</span> <span class="token operator">=</span> movies
+
+    <span class="token keyword">return</span> cluster_details
+
+<span class="token comment" spellcheck="true">## 定义一个能清晰展示结果的函数</span>
+<span class="token keyword">def</span> <span class="token function">print_cluster_data</span><span class="token punctuation">(</span>cluster_data<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token comment" spellcheck="true">##打印cluster_datails中的结果</span>
+    <span class="token keyword">for</span> cluster_num<span class="token punctuation">,</span> cluster_details <span class="token keyword">in</span> cluster_data<span class="token punctuation">.</span>items<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'Cluster &amp;#123;&amp;#125; details'</span><span class="token punctuation">.</span>format<span class="token punctuation">(</span>cluster_num<span class="token punctuation">)</span><span class="token punctuation">)</span>
+        <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'-'</span><span class="token operator">*</span><span class="token number">20</span><span class="token punctuation">)</span>
+        <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'key features:'</span><span class="token punctuation">,</span> cluster_details<span class="token punctuation">[</span><span class="token string">'key_features'</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+        <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'Movie in this cluster:'</span><span class="token punctuation">)</span>
+        <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">','</span><span class="token punctuation">.</span>join<span class="token punctuation">(</span>cluster_details<span class="token punctuation">[</span><span class="token string">'movies'</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+        <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'='</span><span class="token operator">*</span><span class="token number">40</span><span class="token punctuation">)</span>
+</code></pre>
+<pre class=" language-python"><code class="language-python"><span class="token comment" spellcheck="true">## ex16_15 聚类可视化</span>
+<span class="token keyword">import</span> matplotlib<span class="token punctuation">.</span>pyplot <span class="token keyword">as</span> plt
+<span class="token keyword">from</span> sklearn<span class="token punctuation">.</span>manifold <span class="token keyword">import</span> MDS
+<span class="token keyword">from</span> sklearn<span class="token punctuation">.</span>metrics<span class="token punctuation">.</span>pairwise <span class="token keyword">import</span> cosine_similarity
+<span class="token keyword">import</span> random
+<span class="token keyword">from</span> matplotlib<span class="token punctuation">.</span>font_manager <span class="token keyword">import</span> FontProperties
+
+<span class="token keyword">def</span> <span class="token function">plot_clusters</span><span class="token punctuation">(</span>num_clusters<span class="token punctuation">,</span> feature_matrix<span class="token punctuation">,</span>
+                  cluster_data<span class="token punctuation">,</span> movie_data<span class="token punctuation">,</span>
+                  plot_size<span class="token operator">=</span><span class="token punctuation">(</span><span class="token number">16</span><span class="token punctuation">,</span><span class="token number">8</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token comment" spellcheck="true"># 为每个类产生随机颜色                  </span>
+    <span class="token keyword">def</span> <span class="token function">generate_random_color</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+        color <span class="token operator">=</span> <span class="token string">'#%06x'</span> <span class="token operator">%</span> random<span class="token punctuation">.</span>randint<span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0xFFFFFF</span><span class="token punctuation">)</span>
+        <span class="token keyword">return</span> color
+    <span class="token comment" spellcheck="true"># 为每个类别样本设定显示形状    </span>
+    markers <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">'o'</span><span class="token punctuation">,</span> <span class="token string">'v'</span><span class="token punctuation">,</span> <span class="token string">'^'</span><span class="token punctuation">,</span> <span class="token string">'&lt;'</span><span class="token punctuation">,</span> <span class="token string">'>'</span><span class="token punctuation">,</span> <span class="token string">'8'</span><span class="token punctuation">,</span> <span class="token string">'s'</span><span class="token punctuation">,</span> <span class="token string">'p'</span><span class="token punctuation">,</span> <span class="token string">'*'</span><span class="token punctuation">,</span> <span class="token string">'h'</span><span class="token punctuation">,</span> <span class="token string">'H'</span><span class="token punctuation">,</span> <span class="token string">'D'</span><span class="token punctuation">,</span> <span class="token string">'d'</span><span class="token punctuation">]</span>
+    <span class="token comment" spellcheck="true"># 构建余弦相似度矩阵</span>
+    cosine_distance <span class="token operator">=</span> <span class="token number">1</span> <span class="token operator">-</span> cosine_similarity<span class="token punctuation">(</span>feature_matrix<span class="token punctuation">)</span> 
+    <span class="token comment" spellcheck="true"># 使用MDS进行特征降维</span>
+    mds <span class="token operator">=</span> MDS<span class="token punctuation">(</span>n_components<span class="token operator">=</span><span class="token number">2</span><span class="token punctuation">,</span> dissimilarity<span class="token operator">=</span><span class="token string">"precomputed"</span><span class="token punctuation">,</span> random_state<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">)</span>
+    <span class="token comment" spellcheck="true"># 获取低维空间的坐标轴</span>
+    plot_positions <span class="token operator">=</span> mds<span class="token punctuation">.</span>fit_transform<span class="token punctuation">(</span>cosine_distance<span class="token punctuation">)</span>  
+    x_pos<span class="token punctuation">,</span> y_pos <span class="token operator">=</span> plot_positions<span class="token punctuation">[</span><span class="token punctuation">:</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">,</span> plot_positions<span class="token punctuation">[</span><span class="token punctuation">:</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">]</span>
+    <span class="token comment" spellcheck="true"># build cluster plotting data</span>
+    cluster_color_map <span class="token operator">=</span> <span class="token operator">&amp;</span><span class="token comment" spellcheck="true">#123;&amp;#125;</span>
+    cluster_name_map <span class="token operator">=</span> <span class="token operator">&amp;</span><span class="token comment" spellcheck="true">#123;&amp;#125;</span>
+    <span class="token keyword">for</span> cluster_num<span class="token punctuation">,</span> cluster_details <span class="token keyword">in</span> cluster_data<span class="token punctuation">.</span>items<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token comment" spellcheck="true"># assign cluster features to unique label</span>
+        cluster_color_map<span class="token punctuation">[</span>cluster_num<span class="token punctuation">]</span> <span class="token operator">=</span> generate_random_color<span class="token punctuation">(</span><span class="token punctuation">)</span>
+        cluster_name_map<span class="token punctuation">[</span>cluster_num<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token string">', '</span><span class="token punctuation">.</span>join<span class="token punctuation">(</span>cluster_details<span class="token punctuation">[</span><span class="token string">'key_features'</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token punctuation">:</span><span class="token number">5</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">.</span>strip<span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token comment" spellcheck="true"># map each unique cluster label with its coordinates and movies</span>
+    cluster_plot_frame <span class="token operator">=</span> pd<span class="token punctuation">.</span>DataFrame<span class="token punctuation">(</span><span class="token operator">&amp;</span><span class="token comment" spellcheck="true">#123;'x': x_pos,</span>
+                                       <span class="token string">'y'</span><span class="token punctuation">:</span> y_pos<span class="token punctuation">,</span>
+                                       <span class="token string">'label'</span><span class="token punctuation">:</span> movie_data<span class="token punctuation">[</span><span class="token string">'Cluster'</span><span class="token punctuation">]</span><span class="token punctuation">.</span>values<span class="token punctuation">.</span>tolist<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+                                       <span class="token string">'title'</span><span class="token punctuation">:</span> movie_data<span class="token punctuation">[</span><span class="token string">'Title'</span><span class="token punctuation">]</span><span class="token punctuation">.</span>values<span class="token punctuation">.</span>tolist<span class="token punctuation">(</span><span class="token punctuation">)</span>
+                                        <span class="token operator">&amp;</span><span class="token comment" spellcheck="true">#125;)</span>
+    grouped_plot_frame <span class="token operator">=</span> cluster_plot_frame<span class="token punctuation">.</span>groupby<span class="token punctuation">(</span><span class="token string">'label'</span><span class="token punctuation">)</span>
+    <span class="token comment" spellcheck="true"># set plot figure size and axes</span>
+    fig<span class="token punctuation">,</span> ax <span class="token operator">=</span> plt<span class="token punctuation">.</span>subplots<span class="token punctuation">(</span>figsize<span class="token operator">=</span>plot_size<span class="token punctuation">)</span> 
+    ax<span class="token punctuation">.</span>margins<span class="token punctuation">(</span><span class="token number">0.05</span><span class="token punctuation">)</span>
+    <span class="token comment" spellcheck="true"># plot each cluster using co-ordinates and movie titles</span>
+    <span class="token keyword">for</span> cluster_num<span class="token punctuation">,</span> cluster_frame <span class="token keyword">in</span> grouped_plot_frame<span class="token punctuation">:</span>
+         marker <span class="token operator">=</span> markers<span class="token punctuation">[</span>cluster_num<span class="token punctuation">]</span> <span class="token keyword">if</span> cluster_num <span class="token operator">&lt;</span> len<span class="token punctuation">(</span>markers<span class="token punctuation">)</span> \
+                  <span class="token keyword">else</span> np<span class="token punctuation">.</span>random<span class="token punctuation">.</span>choice<span class="token punctuation">(</span>markers<span class="token punctuation">,</span> size<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span>
+         ax<span class="token punctuation">.</span>plot<span class="token punctuation">(</span>cluster_frame<span class="token punctuation">[</span><span class="token string">'x'</span><span class="token punctuation">]</span><span class="token punctuation">,</span> cluster_frame<span class="token punctuation">[</span><span class="token string">'y'</span><span class="token punctuation">]</span><span class="token punctuation">,</span> 
+                 marker<span class="token operator">=</span>marker<span class="token punctuation">,</span> linestyle<span class="token operator">=</span><span class="token string">''</span><span class="token punctuation">,</span> ms<span class="token operator">=</span><span class="token number">12</span><span class="token punctuation">,</span>
+                 label<span class="token operator">=</span>cluster_name_map<span class="token punctuation">[</span>cluster_num<span class="token punctuation">]</span><span class="token punctuation">,</span> 
+                 color<span class="token operator">=</span>cluster_color_map<span class="token punctuation">[</span>cluster_num<span class="token punctuation">]</span><span class="token punctuation">,</span> mec<span class="token operator">=</span><span class="token string">'none'</span><span class="token punctuation">)</span>
+         ax<span class="token punctuation">.</span>set_aspect<span class="token punctuation">(</span><span class="token string">'auto'</span><span class="token punctuation">)</span>
+         ax<span class="token punctuation">.</span>tick_params<span class="token punctuation">(</span>axis<span class="token operator">=</span> <span class="token string">'x'</span><span class="token punctuation">,</span> which<span class="token operator">=</span><span class="token string">'both'</span><span class="token punctuation">,</span> bottom<span class="token operator">=</span><span class="token string">'off'</span><span class="token punctuation">,</span> top<span class="token operator">=</span><span class="token string">'off'</span><span class="token punctuation">,</span>        
+                        labelbottom<span class="token operator">=</span><span class="token string">'off'</span><span class="token punctuation">)</span>
+         ax<span class="token punctuation">.</span>tick_params<span class="token punctuation">(</span>axis<span class="token operator">=</span> <span class="token string">'y'</span><span class="token punctuation">,</span> which<span class="token operator">=</span><span class="token string">'both'</span><span class="token punctuation">,</span> left<span class="token operator">=</span><span class="token string">'off'</span><span class="token punctuation">,</span> top<span class="token operator">=</span><span class="token string">'off'</span><span class="token punctuation">,</span>         
+                        labelleft<span class="token operator">=</span><span class="token string">'off'</span><span class="token punctuation">)</span>
+    fontP <span class="token operator">=</span> FontProperties<span class="token punctuation">(</span><span class="token punctuation">)</span>
+    fontP<span class="token punctuation">.</span>set_size<span class="token punctuation">(</span><span class="token string">'small'</span><span class="token punctuation">)</span>    
+    ax<span class="token punctuation">.</span>legend<span class="token punctuation">(</span>loc<span class="token operator">=</span><span class="token string">'upper center'</span><span class="token punctuation">,</span> bbox_to_anchor<span class="token operator">=</span><span class="token punctuation">(</span><span class="token number">0.5</span><span class="token punctuation">,</span> <span class="token operator">-</span><span class="token number">0.01</span><span class="token punctuation">)</span><span class="token punctuation">,</span> fancybox<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">,</span> 
+              shadow<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">,</span> ncol<span class="token operator">=</span><span class="token number">5</span><span class="token punctuation">,</span> numpoints<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">,</span> prop<span class="token operator">=</span>fontP<span class="token punctuation">)</span> 
+    <span class="token comment" spellcheck="true">#add labels as the film titles</span>
+    <span class="token keyword">for</span> index <span class="token keyword">in</span> range<span class="token punctuation">(</span>len<span class="token punctuation">(</span>cluster_plot_frame<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+        ax<span class="token punctuation">.</span>text<span class="token punctuation">(</span>cluster_plot_frame<span class="token punctuation">.</span>ix<span class="token punctuation">[</span>index<span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token string">'x'</span><span class="token punctuation">]</span><span class="token punctuation">,</span> 
+                cluster_plot_frame<span class="token punctuation">.</span>ix<span class="token punctuation">[</span>index<span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token string">'y'</span><span class="token punctuation">]</span><span class="token punctuation">,</span> 
+                cluster_plot_frame<span class="token punctuation">.</span>ix<span class="token punctuation">[</span>index<span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token string">'title'</span><span class="token punctuation">]</span><span class="token punctuation">,</span> size<span class="token operator">=</span><span class="token number">8</span><span class="token punctuation">)</span>  
+    <span class="token comment" spellcheck="true"># show the plot           </span>
+    plt<span class="token punctuation">.</span>show<span class="token punctuation">(</span><span class="token punctuation">)</span>
+</code></pre>
+<pre class=" language-python"><code class="language-python"><span class="token comment" spellcheck="true">## 在电影简介上显示</span>
+
+cluster_data <span class="token operator">=</span>  get_cluster_data<span class="token punctuation">(</span>clustering_obj<span class="token operator">=</span>km_obj<span class="token punctuation">,</span>
+                                 movie_data<span class="token operator">=</span>movie_data<span class="token punctuation">,</span>
+                                 feature_names<span class="token operator">=</span>feature_names<span class="token punctuation">,</span>
+                                 num_clusters<span class="token operator">=</span>num_clusters<span class="token punctuation">,</span>
+                                 topn_features<span class="token operator">=</span><span class="token number">5</span><span class="token punctuation">)</span>         
+
+print_cluster_data<span class="token punctuation">(</span>cluster_data<span class="token punctuation">)</span> 
+
+plot_clusters<span class="token punctuation">(</span>num_clusters<span class="token operator">=</span>num_clusters<span class="token punctuation">,</span> 
+              feature_matrix<span class="token operator">=</span>feature_matrix<span class="token punctuation">,</span>
+              cluster_data<span class="token operator">=</span>cluster_data<span class="token punctuation">,</span> 
+              movie_data<span class="token operator">=</span>movie_data<span class="token punctuation">,</span>
+              plot_size<span class="token operator">=</span><span class="token punctuation">(</span><span class="token number">16</span><span class="token punctuation">,</span><span class="token number">8</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+</code></pre>
+<pre><code>Cluster 0 details
+--------------------
+key features: ['her', 'she', 'love', 'about', 'she be']
+Movie in this cluster:
+Casablanca,Gone with the Wind,The Wizard of Oz,Titanic,Psycho,Sunset Blvd.,Vertigo,The Sound of Music,West Side Story,The Silence of the Lambs,Singin' in the Rain,A Streetcar Named Desire,The Philadelphia Story,An American in Paris,My Fair Lady,The Apartment,The Exorcist,City Lights,It Happened One Night,Annie Hall,Out of Africa,Terms of Endearment,Tootsie,Nashville,The Graduate,Taxi Driver,Double Indemnity
+========================================
+Cluster 1 details
+--------------------
+key features: ['family', 'brother', 'father', 'train', 'find']
+Movie in this cluster:
+The Godfather,Raging Bull,The Godfather: Part II,Forrest Gump,E.T. the Extra-Terrestrial,Gandhi,Ben-Hur,Doctor Zhivago,The Good, the Bad and the Ugly,Butch Cassidy and the Sundance Kid,High Noon,The Pianist,Goodfellas,The French Connection,The King's Speech,Mr. Smith Goes to Washington,Rain Man,Giant,The Grapes of Wrath,The Green Mile,Mutiny on the Bounty,A Clockwork Orange,Rebel Without a Cause,Yankee Doodle Dandy
+========================================
+Cluster 2 details
+--------------------
+key features: ['of his', 'death', 'son', 'murder', 'about']
+Movie in this cluster:
+Amadeus,Gladiator,A Place in the Sun,Midnight Cowboy
+========================================
+Cluster 3 details
+--------------------
+key features: ['her', 'she', 'tell', 'will', 'go']
+Movie in this cluster:
+The Shawshank Redemption,One Flew Over the Cuckoo's Nest,Citizen Kane,On the Waterfront,Star Wars,2001: A Space Odyssey,Chinatown,It's a Wonderful Life,Some Like It Hot,The Lord of the Rings: The Return of the King,From Here to Eternity,Unforgiven,Raiders of the Lost Ark,Rocky,To Kill a Mockingbird,The Best Years of Our Lives,Jaws,Braveheart,The Deer Hunter,Good Will Hunting,Fargo,Shane,Close Encounters of the Third Kind,Network,American Graffiti,Pulp Fiction,The African Queen,Stagecoach,The Maltese Falcon,Wuthering Heights,Rear Window,The Third Man,North by Northwest
+========================================
+Cluster 4 details
+--------------------
+key features: ['soldier', 'kill', 'war', 'officer', 'men']
+Movie in this cluster:
+Schindler's List,Lawrence of Arabia,The Bridge on the River Kwai,12 Angry Men,Dr. Strangelove or: How I Learned to Stop Worrying and Love the Bomb,Apocalypse Now,Saving Private Ryan,Patton,The Treasure of the Sierra Madre,Platoon,Dances with Wolves,All Quiet on the Western Front
+========================================
+
+
+C:\Users\43790\Anaconda3\lib\site-packages\ipykernel_launcher.py:60: FutureWarning: 
+.ix is deprecated. Please use
+.loc for label based indexing or
+.iloc for positional indexing
+
+See the documentation here:
+http://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#ix-indexer-is-deprecated
+C:\Users\43790\Anaconda3\lib\site-packages\ipykernel_launcher.py:61: FutureWarning: 
+.ix is deprecated. Please use
+.loc for label based indexing or
+.iloc for positional indexing
+
+See the documentation here:
+http://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#ix-indexer-is-deprecated
+C:\Users\43790\Anaconda3\lib\site-packages\ipykernel_launcher.py:62: FutureWarning: 
+.ix is deprecated. Please use
+.loc for label based indexing or
+.iloc for positional indexing
+
+See the documentation here:
+http://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#ix-indexer-is-deprecated</code></pre>
+<p><img src="output_15_2.png" alt="png"></p>
+<pre class=" language-python"><code class="language-python"><span class="token comment" spellcheck="true">## ex16_16</span>
+distortions <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
+<span class="token keyword">for</span> i <span class="token keyword">in</span> range<span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">11</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    km <span class="token operator">=</span> KMeans<span class="token punctuation">(</span>n_clusters<span class="token operator">=</span>i<span class="token punctuation">,</span> init<span class="token operator">=</span><span class="token string">'k-means++'</span><span class="token punctuation">,</span>max_iter<span class="token operator">=</span><span class="token number">1000</span><span class="token punctuation">)</span>
+    km<span class="token punctuation">.</span>fit<span class="token punctuation">(</span>feature_matrix<span class="token punctuation">)</span>
+    distortions<span class="token punctuation">.</span>append<span class="token punctuation">(</span>km<span class="token punctuation">.</span>inertia_<span class="token punctuation">)</span>
+plt<span class="token punctuation">.</span>plot<span class="token punctuation">(</span>range<span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">11</span><span class="token punctuation">)</span><span class="token punctuation">,</span> distortions<span class="token punctuation">,</span> marker<span class="token operator">=</span><span class="token string">'o'</span><span class="token punctuation">)</span>
+plt<span class="token punctuation">.</span>xlabel<span class="token punctuation">(</span><span class="token string">'Number of clusters'</span><span class="token punctuation">)</span>
+plt<span class="token punctuation">.</span>ylabel<span class="token punctuation">(</span><span class="token string">'Distortion'</span><span class="token punctuation">)</span>
+plt<span class="token punctuation">.</span>show<span class="token punctuation">(</span><span class="token punctuation">)</span>
+</code></pre>
+<p><img src="output_16_0.png" alt="png"></p>
+<pre class=" language-python"><code class="language-python"></code></pre>
+<script>
+        document.querySelectorAll('.github-emoji')
+          .forEach(el => {
+            if (!el.dataset.src) { return; }
+            const img = document.createElement('img');
+            img.style = 'display:none !important;';
+            img.src = el.dataset.src;
+            img.addEventListener('error', () => {
+              img.remove();
+              el.style.color = 'inherit';
+              el.style.backgroundImage = 'none';
+              el.style.background = 'none';
+            });
+            img.addEventListener('load', () => {
+              img.remove();
+            });
+            document.body.appendChild(img);
+          });
+      </script>
+            </div>
+            <hr/>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        文章作者:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="/about" rel="external nofollow noreferrer">国祥</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        文章链接:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="https://zgx43790.github.io/2020/04/01/ju-lei-mo-xing-ji-wen-ben-ju-lei-fen-xi/">https://zgx43790.github.io/2020/04/01/ju-lei-mo-xing-ji-wen-ben-ju-lei-fen-xi/</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        版权声明:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    本博客所有文章除特別声明外，均采用
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    许可协议。转载请注明来源
+                    <a href="/about" target="_blank">国祥</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>复制成功，请遵循本文的转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            
+                                <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">
+                                    <span class="chip bg-color">机器学习</span>
+                                </a>
+                            
+                                <a href="/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">
+                                    <span class="chip bg-color">学习笔记</span>
+                                </a>
+                            
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+<div id="article-share">
+
+    
+    <div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="/libs/share/js/social-share.min.js"></script>
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+                <style>
+    #reward {
+        margin: 40px 0;
+        text-align: center;
+    }
+
+    #reward .reward-link {
+        font-size: 1.4rem;
+        line-height: 38px;
+    }
+
+    #reward .btn-floating:hover {
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2), 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    #rewardModal {
+        width: 320px;
+        height: 350px;
+    }
+
+    #rewardModal .reward-title {
+        margin: 15px auto;
+        padding-bottom: 5px;
+    }
+
+    #rewardModal .modal-content {
+        padding: 10px;
+    }
+
+    #rewardModal .close {
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        color: rgba(0, 0, 0, 0.5);
+        font-size: 1.3rem;
+        line-height: 20px;
+        cursor: pointer;
+    }
+
+    #rewardModal .close:hover {
+        color: #ef5350;
+        transform: scale(1.3);
+        -moz-transform:scale(1.3);
+        -webkit-transform:scale(1.3);
+        -o-transform:scale(1.3);
+    }
+
+    #rewardModal .reward-tabs {
+        margin: 0 auto;
+        width: 210px;
+    }
+
+    .reward-tabs .tabs {
+        height: 38px;
+        margin: 10px auto;
+        padding-left: 0;
+    }
+
+    .reward-content ul {
+        padding-left: 0 !important;
+    }
+
+    .reward-tabs .tabs .tab {
+        height: 38px;
+        line-height: 38px;
+    }
+
+    .reward-tabs .tab a {
+        color: #fff;
+        background-color: #ccc;
+    }
+
+    .reward-tabs .tab a:hover {
+        background-color: #ccc;
+        color: #fff;
+    }
+
+    .reward-tabs .wechat-tab .active {
+        color: #fff !important;
+        background-color: #22AB38 !important;
+    }
+
+    .reward-tabs .alipay-tab .active {
+        color: #fff !important;
+        background-color: #019FE8 !important;
+    }
+
+    .reward-tabs .reward-img {
+        width: 210px;
+        height: 210px;
+    }
+</style>
+
+<div id="reward">
+    <a href="#rewardModal" class="reward-link modal-trigger btn-floating btn-medium waves-effect waves-light red">赏</a>
+
+    <!-- Modal Structure -->
+    <div id="rewardModal" class="modal">
+        <div class="modal-content">
+            <a class="close modal-close"><i class="fas fa-times"></i></a>
+            <h4 class="reward-title">你的赏识是我前进的动力</h4>
+            <div class="reward-content">
+                <div class="reward-tabs">
+                    <ul class="tabs row">
+                        <li class="tab col s6 alipay-tab waves-effect waves-light"><a href="#alipay">支付宝</a></li>
+                        <li class="tab col s6 wechat-tab waves-effect waves-light"><a href="#wechat">微 信</a></li>
+                    </ul>
+                    <div id="alipay">
+                        <img src="/medias/reward/alipay.png" class="reward-img" alt="支付宝打赏二维码">
+                    </div>
+                    <div id="wechat">
+                        <img src="/medias/reward/wechat.jpg" class="reward-img" alt="微信打赏二维码">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('.tabs').tabs();
+    });
+</script>
+
+            
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+            <div class="card">
+                <a href="/2020/04/10/jue-ce-shu/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/14.jpg" class="responsive-img" alt="决策树">
+                        
+                        <span class="card-title">决策树</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            决策数
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2020-04-10
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" class="post-category">
+                                    机器学习
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">
+                        <span class="chip bg-color">机器学习</span>
+                    </a>
+                    
+                    <a href="/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">
+                        <span class="chip bg-color">学习笔记</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2020/03/27/fen-lei-mo-xing/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/7.jpg" class="responsive-img" alt="分类模型">
+                        
+                        <span class="card-title">分类模型</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            分类模型
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-03-27
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" class="post-category">
+                                    机器学习
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">
+                        <span class="chip bg-color">机器学习</span>
+                    </a>
+                    
+                    <a href="/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">
+                        <span class="chip bg-color">学习笔记</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+<script>
+    $('#articleContent').on('copy', function (e) {
+        // IE8 or earlier browser is 'undefined'
+        if (typeof window.getSelection === 'undefined') return;
+
+        var selection = window.getSelection();
+        // if the selection is short let's not annoy our users.
+        if (('' + selection).length < Number.parseInt('120')) {
+            return;
+        }
+
+        // create a div outside of the visible area and fill it with the selected text.
+        var bodyElement = document.getElementsByTagName('body')[0];
+        var newdiv = document.createElement('div');
+        newdiv.style.position = 'absolute';
+        newdiv.style.left = '-99999px';
+        bodyElement.appendChild(newdiv);
+        newdiv.appendChild(selection.getRangeAt(0).cloneContents());
+
+        // we need a <pre> tag workaround.
+        // otherwise the text inside "pre" loses all the line breaks!
+        if (selection.getRangeAt(0).commonAncestorContainer.nodeName === 'PRE') {
+            newdiv.innerHTML = "<pre>" + newdiv.innerHTML + "</pre>";
+        }
+
+        var url = document.location.href;
+        newdiv.innerHTML += '<br />'
+            + '来源: Singularity&#39;s Blog<br />'
+            + '文章作者: 国祥<br />'
+            + '文章链接: <a href="' + url + '">' + url + '</a><br />'
+            + '本文章著作权归作者所有，任何形式的转载都请注明出处。';
+
+        selection.selectAllChildren(newdiv);
+        window.setTimeout(function () {bodyElement.removeChild(newdiv);}, 200);
+    });
+</script>
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
+
+
+<!-- 代码块折行 -->
+
+<style type="text/css">
+code[class*="language-"], pre[class*="language-"] { white-space: pre !important; }
+</style>
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('0'),
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h2, h3, h4').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+
+    
+
+</main>
+
+
+
+
+    <footer class="page-footer bg-color">
+    
+        <link rel="stylesheet" href="/libs/aplayer/APlayer.min.css">
+<style>
+    .aplayer .aplayer-lrc p {
+        
+        display: none;
+        
+        font-size: 12px;
+        font-weight: 700;
+        line-height: 16px !important;
+    }
+
+    .aplayer .aplayer-lrc p.aplayer-lrc-current {
+        
+        display: none;
+        
+        font-size: 15px;
+        color: #42b983;
+    }
+
+    
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body {
+        left: -66px !important;
+    }
+
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body:hover {
+        left: 0px !important;
+    }
+
+    
+</style>
+<div class="">
+    
+    <div class="row">
+        <meting-js class="col l8 offset-l2 m10 offset-m1 s12"
+                   server="netease"
+                   type="playlist"
+                   id="503838841"
+                   fixed='true'
+                   autoplay='true'
+                   theme='#42b983'
+                   loop='all'
+                   order='random'
+                   preload='auto'
+                   volume='0.06'
+                   list-folded='true'
+        >
+        </meting-js>
+    </div>
+</div>
+
+<script src="/libs/aplayer/APlayer.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
+
+    
+    <div class="container row center-align" style="margin-bottom: 15px !important;">
+        <div class="col s12 m8 l8 copy-right">
+            &copy;2020-2023 GuoXiang. 版权所有
+
+
+            <span id="year">2020</span>
+            <a href="/about" target="_blank">国祥</a>
+            
+            <br>
+            
+            
+            
+            
+            
+            
+            <span id="busuanzi_container_site_pv">
+                |&nbsp;<i class="far fa-eye"></i>&nbsp;总访问量:&nbsp;<span id="busuanzi_value_site_pv"
+                    class="white-color"></span>&nbsp;次
+            </span>
+            
+            
+            <span id="busuanzi_container_site_uv">
+                |&nbsp;<i class="fas fa-users"></i>&nbsp;总访问人数:&nbsp;<span id="busuanzi_value_site_uv"
+                    class="white-color"></span>&nbsp;人
+            </span>
+            
+            <br>
+            
+            <span id="sitetime">载入运行时间...</span>
+            <script>
+                function siteTime() {
+                    var seconds = 1000;
+                    var minutes = seconds * 60;
+                    var hours = minutes * 60;
+                    var days = hours * 24;
+                    var years = days * 365;
+                    var today = new Date();
+                    var startYear = "2020";
+                    var startMonth = "08";
+                    var startDate = "21";
+                    var startHour = "18";
+                    var startMinute = "0";
+                    var startSecond = "0";
+                    var todayYear = today.getFullYear();
+                    var todayMonth = today.getMonth() + 1;
+                    var todayDate = today.getDate();
+                    var todayHour = today.getHours();
+                    var todayMinute = today.getMinutes();
+                    var todaySecond = today.getSeconds();
+                    var t1 = Date.UTC(startYear, startMonth, startDate, startHour, startMinute, startSecond);
+                    var t2 = Date.UTC(todayYear, todayMonth, todayDate, todayHour, todayMinute, todaySecond);
+                    var diff = t2 - t1;
+                    var diffYears = Math.floor(diff / years);
+                    var diffDays = Math.floor((diff / days) - diffYears * 365);
+                    var diffHours = Math.floor((diff - (diffYears * 365 + diffDays) * days) / hours);
+                    var diffMinutes = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours) /
+                        minutes);
+                    var diffSeconds = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours -
+                        diffMinutes * minutes) / seconds);
+                    if (startYear == todayYear) {
+                        document.getElementById("year").innerHTML = todayYear;
+                        document.getElementById("sitetime").innerHTML = "本站已安全运行 " + diffDays + " 天 " + diffHours +
+                            " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒";
+                    } else {
+                        document.getElementById("year").innerHTML = startYear + " - " + todayYear;
+                        document.getElementById("sitetime").innerHTML = "本站已安全运行 " + diffYears + " 年 " + diffDays +
+                            " 天 " + diffHours + " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒";
+                    }
+                }
+                setInterval(siteTime, 1000);
+            </script>
+            
+            <br>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="ZGX43790" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fab fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:imsingularity@163.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=437904687" class="tooltipped" target="_blank" data-tooltip="QQ联系我: 437904687" data-position="top" data-delay="50">
+        <i class="fab fa-qq"></i>
+    </a>
+
+
+
+
+
+
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script src="/js/search.js"></script>
+<script type="text/javascript">
+$(function () {
+    searchFunc("/search.xml", 'searchInput', 'searchResult');
+});
+</script>
+
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="/libs/materialize/materialize.min.js"></script>
+    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/libs/aos/aos.js"></script>
+    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/js/matery.js"></script>
+
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    <script src="/libs/others/clicklove.js" async="async"></script>
+    
+    
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <script type="text/javascript" src="/libs/background/ribbon-dynamic.js" async="async"></script>
+    
+
+    
+    <script src="/libs/instantpage/instantpage.js" type="module"></script>
+    
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+
+</html>
