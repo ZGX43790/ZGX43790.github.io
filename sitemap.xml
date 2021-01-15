@@ -2,6 +2,41 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://zgx43790.github.io/2020/09/21/tu-guan-xi-wang-luo-a-li-yun/</loc>
+    
+    <lastmod>2021-01-15</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://zgx43790.github.io/2020/09/02/deepmind-relation/</loc>
+    
+    <lastmod>2021-01-15</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://zgx43790.github.io/2020/09/21/qian-tan-dui-gcn-de-li-jie/</loc>
+    
+    <lastmod>2021-01-15</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://zgx43790.github.io/2020/08/10/graph-embedding-second/</loc>
+    
+    <lastmod>2021-01-15</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://zgx43790.github.io/2020/07/22/graph-embedding-first/</loc>
+    
+    <lastmod>2021-01-15</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://zgx43790.github.io/2020/06/22/te-zheng-gong-cheng-te-zheng-xuan-ze/</loc>
     
     <lastmod>2021-01-15</lastmod>
@@ -164,6 +199,20 @@
     <priority>0.6</priority>
   </url>
   
+  <url>
+    <loc>https://zgx43790.github.io/tags/%E5%9B%BE%E6%A8%A1%E5%9E%8B/</loc>
+    <lastmod>2021-01-15</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://zgx43790.github.io/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/</loc>
+    <lastmod>2021-01-15</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
 
   
   <url>
@@ -175,6 +224,20 @@
   
   <url>
     <loc>https://zgx43790.github.io/categories/%E7%BC%96%E7%A8%8B%E7%AE%97%E6%B3%95/</loc>
+    <lastmod>2021-01-15</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://zgx43790.github.io/categories/%E5%9B%BE%E6%A8%A1%E5%9E%8B/</loc>
+    <lastmod>2021-01-15</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://zgx43790.github.io/categories/%E5%9B%BE%E6%A8%A1%E5%9E%8B/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/</loc>
     <lastmod>2021-01-15</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>

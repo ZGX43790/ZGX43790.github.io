@@ -504,9 +504,9 @@
 <ul>
 <li>Feature Scaling 很容易被遗忘, 虽然在 Decision tree和 random forests 时不用担心这个问题. 但在很多算法和模型下都是 scaling 后拟合效果更好.</li>
 <li>两类常用方法: normalization 和 standardization.</li>
-<li>normalization: rescaling to [0,1], 如 min-max scaling<img src="img/1.png" alt="title"></li>
+<li>normalization: rescaling to [0,1], 如 min-max scaling<img src="01.png" alt="title"></li>
 <li>standardization（更多）: more practical, 因为在一些算法中, weights 初始值都设置为 0, 或者接近 0.</li>
-<li>standardization 之后会更利用更新 weights. 并且 standardize 对 outlier（离群值） 更不敏感，受影响更小<img src="img/2.png" alt="title"></li>
+<li>standardization 之后会更利用更新 weights. 并且 standardize 对 outlier（离群值） 更不敏感，受影响更小<img src="02.png" alt="title"></li>
 </ul>
 <pre class=" language-python"><code class="language-python"><span class="token comment" spellcheck="true">## ex11_1 创建示例数据集</span>
 <span class="token keyword">import</span> pandas <span class="token keyword">as</span> pd
@@ -738,7 +738,7 @@ X_train_norm<span class="token punctuation">.</span>mean<span class="token punct
 <li>减轻维数灾难，在部分特征上构建模型</li>
 <li>去除不相关特征（与任务无关或冗余特征），降低学习任务的难度</li>
 </ul>
-<p>（3）. 特征子集的选择过程<img src="img/3.png" alt="title"></p>
+<p>（3）. 特征子集的选择过程<img src="03.png" alt="title"></p>
 <ul>
 <li>特征产生过程( Generation Procedure )</li>
 <li>产生过程是搜索特征子集的过程，负责为评价函数提供特征子集。</li>
@@ -749,7 +749,7 @@ X_train_norm<span class="token punctuation">.</span>mean<span class="token punct
 <li>验证过程( Validation Procedure )</li>
 <li>在验证数据集上验证选出来的特征子集的有效性</li>
 </ul>
-<p>(4). 搜索子集常用算法<img src="img/4.png" alt="title"><br>（框中为现常用的算法：启发式的方法）</p>
+<p>(4). 搜索子集常用算法<img src="04.png" alt="title"><br>（框中为现常用的算法：启发式的方法）</p>
 <ul>
 <li>序列前向算法（Sequential Forward Selection， SFS）：特征子集X从空集开始，每次选择一个特征x加入特征子集X，使得特征函数J(X)最优。即每次都选择一个使得评价函数的取值达到最优的特征加入</li>
 <li>序列后向算法（Sequential Backward Selection， SBS ）：从特征全集O开始，每次从特征集O中剔除一个特征x，使得剔除特征x后评价函数值达到最优</li>
@@ -773,8 +773,8 @@ X_train_norm<span class="token punctuation">.</span>mean<span class="token punct
 <li><p>通常需要确定一个特定统计量来衡量特征的重要性</p>
 </li>
 <li><p>过滤式特征选择的评价统计量如：</p>
-<p>  (1) 皮尔逊相关系数 判断特征和目标特征之间线性关系的统计量 <img src="img/5.png" alt="title"></p>
-<p>  (2) 信息增益 选择特征X前后，Y的信息熵变化用Y的信息增益表示 <img src="img/6.png" alt="title"><br>  其中，<img src="img/7.png" alt="title">为分类变量Y的信息熵，<br>  <img src="img/8.png" alt="title">为对于某特征X的条件信息熵。<br>  假定存在特征子集X1和X2，若<img src="img/9.png" alt="title"> ，则宜选用特征子集X1</p>
+<p>  (1) 皮尔逊相关系数 判断特征和目标特征之间线性关系的统计量 <img src="05.png" alt="title"></p>
+<p>  (2) 信息增益 选择特征X前后，Y的信息熵变化用Y的信息增益表示 <img src="06.png" alt="title"><br>  其中，<img src="07.png" alt="title">为分类变量Y的信息熵，<br>  <img src="08.png" alt="title">为对于某特征X的条件信息熵。<br>  假定存在特征子集X1和X2，若<img src="09.png" alt="title"> ，则宜选用特征子集X1</p>
 </li>
 </ul>
 </li>
@@ -855,8 +855,8 @@ plt<span class="token punctuation">.</span>matshow<span class="token punctuation
 <p>(3). 算法步骤</p>
 <ul>
 <li>用k=d初始化算法， d为特征空间xd 的维数</li>
-<li><img src="img/10.png" alt="title">  x满足评价函数最大值</li>
-<li><img src="img/11.png" alt="title"></li>
+<li><img src="010.png" alt="title">  x满足评价函数最大值</li>
+<li><img src="011.png" alt="title"></li>
 <li>如果k等于期望的特征数则停止；否则转往步骤2</li>
 </ul>
 <pre class=" language-python"><code class="language-python"><span class="token comment" spellcheck="true">## ex11_6</span>
@@ -1250,31 +1250,31 @@ Test accuracy: 0.9814814814814815</code></pre>
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2020/08/22/ji-cheng-xue-xi/">
+                <a href="/2020/07/22/graph-embedding-first/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/4.jpg" class="responsive-img" alt="集成学习">
+                        <img src="/medias/featureimages/13.jpg" class="responsive-img" alt="Graph Embedding(图嵌入)--【基础篇】">
                         
-                        <span class="card-title">集成学习</span>
+                        <span class="card-title">Graph Embedding(图嵌入)--【基础篇】</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            本文详细介绍了集成学习-随机森林和AdaBoost的理论方法，并给出了详细的实现代码。
+                            Graph Embedding(图嵌入)--【基础篇】
                         
                     </div>
                     <div class="publish-info">
                         <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2020-08-22
+                            <i class="far fa-clock fa-fw icon-date"></i>2020-07-22
                         </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" class="post-category">
-                                    机器学习
+                            <a href="/categories/%E5%9B%BE%E6%A8%A1%E5%9E%8B/" class="post-category">
+                                    图模型
                                 </a>
                             
                             
@@ -1284,12 +1284,16 @@ Test accuracy: 0.9814814814814815</code></pre>
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">
-                        <span class="chip bg-color">机器学习</span>
-                    </a>
-                    
                     <a href="/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">
                         <span class="chip bg-color">学习笔记</span>
+                    </a>
+                    
+                    <a href="/tags/%E5%9B%BE%E6%A8%A1%E5%9E%8B/">
+                        <span class="chip bg-color">图模型</span>
+                    </a>
+                    
+                    <a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/">
+                        <span class="chip bg-color">深度学习</span>
                     </a>
                     
                 </div>
