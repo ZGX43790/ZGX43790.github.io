@@ -446,7 +446,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    7.1k
+                    7k
                 </div>
                 
 
@@ -731,10 +731,6 @@ def <span class="token function">evaluate_algorithm</span><span class="token pun
         accuracy <span class="token operator">=</span> <span class="token function">accuracy_metric</span><span class="token punctuation">(</span>actual<span class="token punctuation">,</span> predicted<span class="token punctuation">)</span>
         scores<span class="token punctuation">.</span><span class="token function">append</span><span class="token punctuation">(</span>accuracy<span class="token punctuation">)</span>
     <span class="token keyword">return</span> scores</code></pre>
-<blockquote>
-<p>使用算法：若你感兴趣可以构建完整的应用程序，从案例进行封装，也可以参考我们的代码</p>
-</blockquote>
-<p><a target="_blank" rel="noopener" href="https://github.com/apachecn/AiLearning/blob/master/src/py2.x/ml/7.RandomForest/randomForest.py">完整代码地址</a>: <a target="_blank" rel="noopener" href="https://github.com/apachecn/AiLearning/blob/master/src/py2.x/ml/7.RandomForest/randomForest.py">https://github.com/apachecn/AiLearning/blob/master/src/py2.x/ml/7.RandomForest/randomForest.py</a></p>
 <h2 id="AdaBoost"><a href="#AdaBoost" class="headerlink" title="AdaBoost"></a>AdaBoost</h2><h3 id="AdaBoost-adaptive-boosting-自适应-boosting-概述"><a href="#AdaBoost-adaptive-boosting-自适应-boosting-概述" class="headerlink" title="AdaBoost (adaptive boosting: 自适应 boosting) 概述"></a>AdaBoost (adaptive boosting: 自适应 boosting) 概述</h3><p><code>能否使用弱分类器和多个实例来构建一个强分类器？ 这是一个非常有趣的理论问题。</code></p>
 <h3 id="AdaBoost-原理"><a href="#AdaBoost-原理" class="headerlink" title="AdaBoost 原理"></a>AdaBoost 原理</h3><blockquote>
 <p>AdaBoost 工作原理</p>
@@ -905,7 +901,6 @@ predicting10 <span class="token operator">=</span> <span class="token function">
 errArr <span class="token operator">=</span> <span class="token function">mat</span><span class="token punctuation">(</span><span class="token function">ones</span><span class="token punctuation">(</span><span class="token punctuation">(</span>m<span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
 # 测试：计算总样本数，错误样本数，错误率
 print m<span class="token punctuation">,</span> errArr<span class="token punctuation">[</span>predicting10 <span class="token operator">!=</span> <span class="token function">mat</span><span class="token punctuation">(</span>labelArrTest<span class="token punctuation">)</span><span class="token punctuation">.</span>T<span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">sum</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> errArr<span class="token punctuation">[</span>predicting10 <span class="token operator">!=</span> <span class="token function">mat</span><span class="token punctuation">(</span>labelArrTest<span class="token punctuation">)</span><span class="token punctuation">.</span>T<span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">sum</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">/</span>m</code></pre>
-<p><a target="_blank" rel="noopener" href="https://github.com/apachecn/AiLearning/blob/master/src/py2.x/ml/7.AdaBoost/adaboost.py">完整代码地址</a>: <a target="_blank" rel="noopener" href="https://github.com/apachecn/AiLearning/blob/master/src/py2.x/ml/7.AdaBoost/adaboost.py">https://github.com/apachecn/AiLearning/blob/master/src/py2.x/ml/7.AdaBoost/adaboost.py</a></p>
 <h4 id="要点补充"><a href="#要点补充" class="headerlink" title="要点补充"></a>要点补充</h4><blockquote>
 <p>非均衡现象：</p>
 </blockquote>
@@ -958,11 +953,10 @@ print m<span class="token punctuation">,</span> errArr<span class="token punctua
 </li>
 <li><p>考虑对各类别尝试不同的采样比例，不一定是1:1</p>
 </li>
-<li><p>考虑同时使用过采样与欠采样
-&nbsp; &nbsp; &nbsp; &nbsp;</p>
-<h5 id="4-尝试产生人工生成的样本"><a href="#4-尝试产生人工生成的样本" class="headerlink" title="4.尝试产生人工生成的样本"></a>4.尝试产生人工生成的样本</h5></li>
+<li><p>考虑同时使用过采样与欠采样</p>
+</li>
 </ul>
-<p>一种简单的方法就是随机抽样小类样本的属性（特征）来组成新的样本即属性值随机采样。你可以根据经验进行抽样，可以使用其他方式比如朴素贝叶斯方法假设各属性之间互相独立进行采样，这样便可得到更多的数据，但是无法保证属性之间的非线性关系。</p>
+<h5 id="4-尝试产生人工生成的样本"><a href="#4-尝试产生人工生成的样本" class="headerlink" title="4.尝试产生人工生成的样本"></a>4.尝试产生人工生成的样本</h5><p>一种简单的方法就是随机抽样小类样本的属性（特征）来组成新的样本即属性值随机采样。你可以根据经验进行抽样，可以使用其他方式比如朴素贝叶斯方法假设各属性之间互相独立进行采样，这样便可得到更多的数据，但是无法保证属性之间的非线性关系。</p>
 <p>当然也有系统性的算法。最常用的SMOTE(Synthetic Minority Over-Sampling Technique)。 顾名思义，这是一种over sampling（过抽样）的方式。它是产生人为的样本而不是制造样本副本。这个算法是选取2个或者2个以上相似的样本（根据距离度量 distance measure），然后每次选择其中一个样本，并随机选择一定数量的邻居样本对选择的那个样本的一个属性增加噪声(每次只处理一个属性)。这样就构造了更多的新生数据。具体可以参见<a target="_blank" rel="noopener" href="http://www.jair.org/papers/paper953.html">原始论文</a>。</p>
 <p>python实现可以查阅<a target="_blank" rel="noopener" href="https://github.com/scikit-learn-contrib/imbalanced-learn">UnbalancedDataset</a></p>
 <h5 id="5-尝试不同的算法"><a href="#5-尝试不同的算法" class="headerlink" title="5.尝试不同的算法"></a>5.尝试不同的算法</h5><p>强烈建议不要在每个问题上使用你最喜欢的算法。虽然这个算法带来较好的效果，但是它也会蒙蔽你观察数据内蕴含的其他的信息。至少你得在同一个问题上试试各种算法。具体可以参阅<a target="_blank" rel="noopener" href="https://machinelearningmastery.com/why-you-should-be-spot-checking-algorithms-on-your-machine-learning-problems/">Why you should be Spot-Checking Algorithms on your Machine Learning Problems</a></p>
