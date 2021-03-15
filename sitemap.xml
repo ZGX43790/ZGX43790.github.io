@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://zgx43790.github.io/2020/03/13/shang-ye-fen-xi-shi-li-yi-tiktok-wei-li/</loc>
+    
+    <lastmod>2021-03-15</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://zgx43790.github.io/2020/09/21/qian-tan-dui-gcn-de-li-jie/</loc>
     
     <lastmod>2021-03-10</lastmod>
@@ -318,6 +325,13 @@
     <priority>0.6</priority>
   </url>
   
+  <url>
+    <loc>https://zgx43790.github.io/tags/%E5%95%86%E4%B8%9A%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/</loc>
+    <lastmod>2021-03-15</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
 
   
   <url>
@@ -350,6 +364,13 @@
   
   <url>
     <loc>https://zgx43790.github.io/categories/%E5%A4%8D%E6%9D%82%E7%BD%91%E7%BB%9C-%E7%A4%BE%E4%BA%A4%E7%BD%91%E7%BB%9C/</loc>
+    <lastmod>2021-03-15</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://zgx43790.github.io/categories/%E5%95%86%E4%B8%9A%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E5%AE%9E%E6%88%98/</loc>
     <lastmod>2021-03-15</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
